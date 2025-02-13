@@ -315,7 +315,7 @@ control.runInParallel(function () {
 
 basic.pause(12800) // Cow 75
 control.runInParallel(function () {
-    breathe(15, 30, 1, 1200)
+    breathe(15, 25, 1, 1200)
 })
 
 basic.pause(6000) // Goodnight Balloon 80
@@ -326,9 +326,9 @@ control.runInParallel(function () { breathe(15, 50, 1, 1100) }) // bears
 // 91 kittens
 basic.pause(8200)
 control.runInParallel(function () {
-    breathe(15, 30, 2, 320)
+    breathe(15, 23, 2, 320)
     basic.pause(500)
-    breathe(15, 30, 1, 320)
+    breathe(15, 23, 1, 320)
 })
 
 // 101 clocks
@@ -336,13 +336,25 @@ basic.pause(9000)
 control.runInParallel(function () {
     strip.setBrightness(17)
     strip.show()
-    basic.pause(700)
+    basic.pause(600)
     strip.setBrightness(15)
     strip.show()
-    basic.pause(700)
+    basic.pause(600)
     strip.setBrightness(17)
     strip.show()
-    basic.pause(700)
+    basic.pause(600)
+    strip.setBrightness(15)
+    strip.show()
+    basic.pause(600)
+    strip.setBrightness(17)
+    strip.show()
+    basic.pause(600)
+    strip.setBrightness(15)
+    strip.show()
+    basic.pause(600)
+    strip.setBrightness(17)
+    strip.show()
+    basic.pause(60)
     strip.setBrightness(15)
     strip.show()
 })
@@ -350,11 +362,11 @@ control.runInParallel(function () {
 // 114 mouse
 basic.pause(13000)
 control.runInParallel(function () {
-    breathe(15, 25, 6, 200)
+    breathe(15, 19, 6, 200)
 })
 
 // 140 transition
-basic.pause(26000) // end of audio
+basic.pause(21000) // end of audio
 // Fade to Atmosphere
 setGradientColorRGB(240, 100, 20, 180, 100, 20)
 adjustBrightness(15, 5, 3000)
