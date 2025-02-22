@@ -1,5 +1,5 @@
 # Campus Radio Prototype
-![image](../../assets/CampusRadioPrototypeReadmeImage.png)
+![image](../../../assets/CampusRadioPrototypeReadmeImage.png)
 
 Web code to support Wizard of Oz testing of the Campus Radio prototype.
 
