@@ -5,6 +5,8 @@ let threshold = 400
 // NEEDED SO THAT MACOS DOES NOT IGNORE DEVICE AS "SPAM"
 basic.pause(3000)
 
+// MUST IMPORT KEYBOARD EXTENSION IN ONLINE MAKECODE IDE
+
 forever(function () {
     x = input.acceleration(Dimension.X)
     y = input.acceleration(Dimension.Y)
