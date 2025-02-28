@@ -1,15 +1,16 @@
 const { exec } = require('child_process');
 const readline = require('readline');
+const fs = require('fs'); // Add file system module
 
 // Define the GPIO pins to monitor (using BCM numbering)
 const pins = [17, 27, 22, 23]; // Replace with your actual GPIO pin numbers
 
 // Define audio files to play for each pin
 let audioFiles = {
-    17: './audiofiles/cartoon/Cartoon Balloon Rubbing 07.wav',
-    27: './audiofiles/cartoon/Cartoon Voice Dippity Doo Goofy 01.wav',
-    22: './audiofiles/science-fiction/Science Fiction Sci-Fi Electronic Robot Droid 97.wav',
-    23: './audiofiles/animals/Animal Mammal Carnivore Cat Tiger Roar 01.wav'
+    17: '',
+    27: '',
+    22: '',
+    23: ''
 };
 
 // Function to update audio files from JSON
@@ -37,9 +38,46 @@ export function updateAudioFiles(jsonString) {
         } else {
             console.error('Invalid JSON format: response array is missing or empty');
         }
+
+        // Write the jsonString to currentResponse.json
+        fs.writeFile('./currentResponse.json', jsonString, (writeErr) => {
+            if (writeErr) {
+                console.error('Error writing to currentResponse.json:', writeErr);
+            } else {
+                console.log('currentResponse.json updated successfully.');
+            }
+        });
+
     } catch (error) {
         console.error('Error updating audio files:', error.message);
     }
+}
+
+// Function to initialize audioFiles from currentfiles.json
+export function initializeAudioFiles() {
+    fs.readFile('./currentfiles.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading currentfiles.json:', err);
+            return;
+        }
+        try {
+            const jsonData = JSON.parse(data);
+            if (jsonData && jsonData.response) {
+                const newAudioFiles = {};
+                jsonData.response.forEach((item, index) => {
+                    if (index < pins.length && item['wav-path']) {
+                        newAudioFiles[pins[index]] = './audiofiles' + item['wav-path'];
+                    }
+                });
+                audioFiles = newAudioFiles;
+                console.log('Audio files initialized from currentfiles.json:', audioFiles);
+            } else {
+                console.error('Invalid JSON format in currentfiles.json: response array is missing or empty');
+            }
+        } catch (parseError) {
+            console.error('Error parsing currentfiles.json:', parseError);
+        }
+    });
 }
 
 // Map keyboard keys to pins for testing
@@ -102,6 +140,9 @@ process.stdin.on('keypress', (str, key) => {
     }
 });
 }
+
+// Initialize audio files from currentfiles.json on startup
+initializeAudioFiles();
 
 console.log('Button monitoring started. Press Ctrl+C to exit.');
 console.log('Keyboard testing enabled: Press W, A, S, or D to simulate button presses.');

@@ -1,8 +1,8 @@
 import { wordsToAudio } from "./wordsToAudioGeminiPrompt";
-import { startListening, updateAudioFiles } from "./raspberryPiCode/buttonactionKeyboard";
+import { startListening, updateAudioFiles, initializeAudioFiles } from "./buttonactionKeyboard";
 async function main() {
 
-    
+    initializeAudioFiles();
     startListening();
 
 }
