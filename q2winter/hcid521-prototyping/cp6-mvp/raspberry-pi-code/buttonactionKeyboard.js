@@ -55,7 +55,7 @@ export function updateAudioFiles(jsonString) {
 
 // Function to initialize audioFiles from currentfiles.json
 export function initializeAudioFiles() {
-    fs.readFile('./currentfiles.json', 'utf8', (err, data) => {
+    fs.readFile('./currentResponse.json', 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading currentfiles.json:', err);
             return;
@@ -140,9 +140,6 @@ process.stdin.on('keypress', (str, key) => {
     }
 });
 }
-
-// Initialize audio files from currentfiles.json on startup
-initializeAudioFiles();
 
 console.log('Button monitoring started. Press Ctrl+C to exit.');
 console.log('Keyboard testing enabled: Press W, A, S, or D to simulate button presses.');

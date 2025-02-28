@@ -2,7 +2,7 @@
 .DS_Store
 bun.lock
 .env
-q2winter/hcid521-prototyping/cp6-mvp/raspberryPiCode/audiofiles/*
-q2winter/hcid521-prototyping/cp6-mvp/raspberryPiCode/audiofiles
+q2winter/hcid521-prototyping/cp6-mvp/raspberry-pi-code/audiofiles/*
+q2winter/hcid521-prototyping/cp6-mvp/raspberry-pi-code/audiofiles
 node_modules
 node_modules/*
