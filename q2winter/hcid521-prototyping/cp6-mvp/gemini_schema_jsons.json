@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "response": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "word": { "type": "string" },
+          "wordtranslated": { "type": "string" },
+          "mp3file": { "type": "string" }
+        }
+      }
+    }
+  }
+}

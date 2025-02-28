@@ -1,0 +1,24 @@
+{
+  "response": [
+    {
+      "mp3file": "tiger_es.mp3",
+      "word": "tiger",
+      "wordtranslated": "tigre"
+    },
+    {
+      "mp3file": "lion_es.mp3",
+      "word": "lion",
+      "wordtranslated": "león"
+    },
+    {
+      "mp3file": "bear_es.mp3",
+      "word": "bear",
+      "wordtranslated": "oso"
+    },
+    {
+      "mp3file": "panda_es.mp3",
+      "word": "panda",
+      "wordtranslated": "panda"
+    }
+  ]
+}
