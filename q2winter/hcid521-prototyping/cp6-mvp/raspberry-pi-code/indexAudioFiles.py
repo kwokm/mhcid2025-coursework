@@ -27,5 +27,5 @@ def list_files_recursive(folder_path, output_file="file_list.txt"):
         print(f"An error occurred: {e}")
 
 # Example usage:
-folder_path = "./"  # Replace with the actual folder path
+folder_path = "./audiofiles/"  # Replace with the actual folder path
 list_files_recursive(folder_path)
