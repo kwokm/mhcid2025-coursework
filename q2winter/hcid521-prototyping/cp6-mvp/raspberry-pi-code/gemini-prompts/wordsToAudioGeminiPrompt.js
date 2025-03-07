@@ -85,11 +85,11 @@ const generationConfig = {
   },
 };
 
-export async function wordsToAudio(input) {
+export async function wordsToAudio(input, fileListPath) {
   // TODO Make these files available on the local file system
   // You may need to update the file paths
   const files = [
-    await uploadToGemini("/Users/michaelkwok/Code/mhcid2025-coursework/q2winter/hcid521-prototyping/cp6-mvp/raspberry-pi-code/file_list.txt", "text/plain"),
+    await uploadToGemini(fileListPath || "file_list.txt", "text/plain"),
   ];
 
   // Some files have a processing delay. Wait for them to be ready.

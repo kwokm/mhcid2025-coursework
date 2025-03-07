@@ -22,6 +22,16 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noPropertyAccessFromIndexSignature": false,
+    
+    // Path aliases
+    "baseUrl": ".",
+    "paths": {
+      "@q1/*": ["q1fall/*"],
+      "@q2/*": ["q2winter/*"],
+      "@q3/*": ["q3spring/*"],
+      "@q4/*": ["q4summer/*"],
+      "@assets/*": ["assets/*"]
+    }
   }
 }

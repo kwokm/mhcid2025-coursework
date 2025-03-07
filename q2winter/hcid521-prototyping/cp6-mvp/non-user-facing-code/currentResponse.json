@@ -1,24 +1,24 @@
 {
   "response": [
     {
-      "wav-path": "/cartoon/Cartoon Male Dumb Shy Giggle 01.wav",
-      "word": "Timid",
-      "wordtranslated": "Tímido"
+      "wav-path": "/sports/Sports Helmet Dropping On Grass 01.wav",
+      "word": "helmet",
+      "wordtranslated": "casco"
     },
     {
-      "wav-path": "/cartoon/Cartoon Human Speak Through Voice Changer Robot Short 01.wav",
-      "word": "Mumbled",
-      "wordtranslated": "Murmurado"
+      "wav-path": "/cartoon/Cartoon Voice Happy Slappy 01.wav",
+      "word": "cape",
+      "wordtranslated": "capa"
     },
     {
-      "wav-path": "/cartoon/Cartoon Squeak 03.wav",
-      "word": "Squeaked",
-      "wordtranslated": "Chirrido"
+      "wav-path": "/science-fiction/Science Fiction Sci-Fi Electronic Robot Droid 97.wav",
+      "word": "droid",
+      "wordtranslated": "droide"
     },
     {
-      "wav-path": "/science-fiction/Science Fiction Sci-Fi Electronic Access Granted Tune135.wav",
-      "word": "Kindness",
-      "wordtranslated": "Amabilidad"
+      "wav-path": "/animals/Animal Mammal Carnivore Cat Domestic Cat Meow Sad 01.wav",
+      "word": "lonely",
+      "wordtranslated": "solitario"
     }
   ]
 }
