@@ -15,6 +15,7 @@ try:
     RPI_AVAILABLE = True
     play_lock = threading.Lock()
     is_playing = False
+    current_process = None  # Add a variable to track the current audio process
 except ImportError:
     print("RPi.GPIO module not available. Running in keyboard-only mode.")
     RPI_AVAILABLE = False
@@ -103,11 +104,22 @@ def play_audio(file_path):
     """
     Play audio file using the appropriate command for the platform
     """
-    global is_playing
+    global is_playing, current_process
     
+    # Cancel any currently playing audio
     with play_lock:
-        if is_playing:
-            return
+        if is_playing and current_process:
+            print("Canceling current playback")
+            try:
+                current_process.terminate()
+                current_process.wait(timeout=1)  # Wait for process to terminate
+            except (subprocess.TimeoutExpired, ProcessLookupError):
+                # If process doesn't terminate gracefully, force kill it
+                try:
+                    current_process.kill()
+                except:
+                    pass
+            current_process = None
         
         is_playing = True
     
@@ -116,9 +128,11 @@ def play_audio(file_path):
     try:
         # Determine the platform and use appropriate audio player
         if sys.platform == 'darwin':  # macOS
-            subprocess.run(['afplay', file_path], check=True)
+            current_process = subprocess.Popen(['afplay', file_path])
+            current_process.wait()
         elif sys.platform.startswith('linux'):  # Linux (including Raspberry Pi)
-            subprocess.run(['paplay', file_path], check=True)
+            current_process = subprocess.Popen(['paplay', file_path])
+            current_process.wait()
         else:  # Windows or other
             print(f'Unsupported platform: {sys.platform}', file=sys.stderr)
     except subprocess.SubprocessError as e:
@@ -128,6 +142,7 @@ def play_audio(file_path):
     finally:
         with play_lock:
             is_playing = False
+            current_process = None
 
 def handle_key_press(key):
     """

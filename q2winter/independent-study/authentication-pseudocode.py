@@ -5,11 +5,6 @@ This pseudo-code demonstrates a multi-factor authentication process
 with biometrics, network recognition, location verification, and PIN fallback.
 """
 
-def auth_process():
-    """
-    Logic to retry auth checks and launch recovery processes 
-    """
-
 def authenticate_user():
     """
     Main authentication function that runs through multiple factors
@@ -32,6 +27,13 @@ def authenticate_user():
                         # If all checks fail, return False
                         return False
 
+
+def auth_process():
+    """
+    Logic to retry auth checks and launch recovery processes 
+    """
+
+
 def check_biometrics():
     """
     Verify user's biometric data (fingerprint, face ID, etc.)
@@ -39,18 +41,25 @@ def check_biometrics():
     """
     # Pseudo-code for biometric verification
     try:
-        # Capture biometric data
-        biometric_data = capture_biometric_data()
+        # Facial Scan
+        do {
+            # Working FaceID API code to verify identity
+            try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Log in to your account")
+            return True
+        } catch let error {
+            print(error.localizedDescription)
+        }
+
+        # Fingerprint Sensor
+        # Working TouchID API code to verify identity
+        let context = LAContext()
+        context.touchIDAuthenticationAllowableReuseDuration = 10
         
-        # Compare with stored biometric template
-        stored_template = get_stored_biometric_template()
+        # Iris Scanning
+        "Pseudo-code for iris scanning"
         
-        # Calculate match score
-        match_score = compare_biometrics(biometric_data, stored_template)
-        
-        # Check if match score exceeds threshold
-        threshold = get_biometric_threshold()
-        return match_score >= threshold
+        # Voiceprint
+        "Pseudo-code for voiceprint verification"
     
     except BiometricSensorError:
         print("Biometric sensor error")
