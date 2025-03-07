@@ -89,7 +89,7 @@ export async function wordsToAudio(input) {
   // TODO Make these files available on the local file system
   // You may need to update the file paths
   const files = [
-    await uploadToGemini("file_list.txt", "text/plain"),
+    await uploadToGemini("../file_list.txt", "text/plain"),
   ];
 
   // Some files have a processing delay. Wait for them to be ready.
