@@ -1,0 +1,24 @@
+{
+  "response": [
+    {
+      "wav-path": "/cartoon/Cartoon Male Dumb Shy Giggle 01.wav",
+      "word": "Timid",
+      "wordtranslated": "Tímido"
+    },
+    {
+      "wav-path": "/cartoon/Cartoon Human Speak Through Voice Changer Robot Short 01.wav",
+      "word": "Mumbled",
+      "wordtranslated": "Murmurado"
+    },
+    {
+      "wav-path": "/cartoon/Cartoon Squeak 03.wav",
+      "word": "Squeaked",
+      "wordtranslated": "Chirrido"
+    },
+    {
+      "wav-path": "/science-fiction/Science Fiction Sci-Fi Electronic Access Granted Tune135.wav",
+      "word": "Kindness",
+      "wordtranslated": "Amabilidad"
+    }
+  ]
+}
