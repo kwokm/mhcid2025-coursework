@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Script to update soundboard thoroughly and then launch
-bash /home/pi/update_files.py
+cd /home/pi/
+source venv-toys-to-stories/bin/activate
+python3 /home/pi/update_files.py
 sudo apt-get update
 bash /home/pi/launch_soundboard.sh
 

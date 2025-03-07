@@ -1,24 +1,24 @@
 {
   "response": [
     {
-      "wav-path": "/sports/Sports Helmet Dropping On Grass 01.wav",
-      "word": "helmet",
-      "wordtranslated": "casco"
+      "wav-path": "/miscellaneous/Miscellaneous Squeak 27.wav",
+      "word": "Tapioca",
+      "wordtranslated": "Tapioca"
     },
     {
-      "wav-path": "/cartoon/Cartoon Voice Happy Slappy 01.wav",
-      "word": "cape",
-      "wordtranslated": "capa"
+      "wav-path": "/human/Human Voice Female Sigh 01.wav",
+      "word": "Sighed",
+      "wordtranslated": "Suspiró"
     },
     {
-      "wav-path": "/science-fiction/Science Fiction Sci-Fi Electronic Robot Droid 97.wav",
-      "word": "droid",
-      "wordtranslated": "droide"
+      "wav-path": "/human/Human Running On Tiled Floor  02.wav",
+      "word": "Scooted",
+      "wordtranslated": "Se escabulló"
     },
     {
-      "wav-path": "/animals/Animal Mammal Carnivore Cat Domestic Cat Meow Sad 01.wav",
-      "word": "lonely",
-      "wordtranslated": "solitario"
+      "wav-path": "/crowd/Crowd Stadium Crowd Ambience Cheering Loudly 01.wav",
+      "word": "Cheered",
+      "wordtranslated": "Vitorearon"
     }
   ]
 }
