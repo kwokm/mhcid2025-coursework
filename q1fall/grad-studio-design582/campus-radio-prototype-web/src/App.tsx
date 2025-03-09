@@ -12,7 +12,7 @@ function App() {
     handleVolumeChange,
     handlePlaybackRateChange,
     handlePitchChange,
-    getTrackState
+    getTrackState,
   } = useAudioPlayer();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
     <div className="py-8 min-h-screen bg-gray-100">
       <div className="px-4 mx-auto max-w-7xl">
         <h1 className="mb-8 text-3xl font-bold text-center">Ambient Mixer</h1>
-        
+
         <TrackList
           tracks={tracks}
           getTrackState={getTrackState}

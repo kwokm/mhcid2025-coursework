@@ -11,7 +11,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
   playbackRate,
   pitch,
   onPlaybackRateChange,
-  onPitchChange
+  onPitchChange,
 }) => {
   return (
     <div className="flex flex-col space-y-4 w-full max-w-md">
@@ -25,7 +25,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
           max="2"
           step="0.1"
           value={playbackRate}
-          onChange={(e) => onPlaybackRateChange(parseFloat(e.target.value))}
+          onChange={e => onPlaybackRateChange(parseFloat(e.target.value))}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
         />
       </div>
@@ -39,7 +39,7 @@ export const PlaybackControls: React.FC<PlaybackControlsProps> = ({
           max="12"
           step="1"
           value={pitch}
-          onChange={(e) => onPitchChange(parseFloat(e.target.value))}
+          onChange={e => onPitchChange(parseFloat(e.target.value))}
           className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
         />
       </div>

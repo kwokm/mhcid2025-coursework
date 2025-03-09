@@ -7,10 +7,19 @@ libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__)
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
+try:
+    import RPi.GPIO as GPIO  # Import Raspberry Pi GPIO library
+    GPIO.setwarnings(False)  # Ignore warning for now
+    GPIO.setmode(GPIO.BOARD)   # Use BCM pin numbering to match your pin definitions
+    from waveshare_epd import epd2in13_V4
+    from PIL import Image,ImageDraw,ImageFont
+    RPI_AVAILABLE = True
+except ImportError:
+    print("RPi.GPIO module not available. Running in keyboard-only mode.")
+    RPI_AVAILABLE = False
+
 import logging
-from waveshare_epd import epd2in13_V4
 import time
-from PIL import Image,ImageDraw,ImageFont
 import traceback
 
 # logging.basicConfig(level=logging.DEBUG)
@@ -54,25 +63,29 @@ def display_toys_to_stories(word1, word2, word3, word4):
         exit()
 
 def display_character_name(name, title):
-    try:
-        # Drawing on the image
-        font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
-        font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
-        
-        epd = epd2in13_V4.EPD()
-        epd.init()
-        image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
-        draw = ImageDraw.Draw(image)
-        draw.text((16, 60), name + " the " + title, font = font15, fill = 0)
-        epd.display(epd.getbuffer(image))
+    if RPI_AVAILABLE:
+        try:
+            # Drawing on the image
+            font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
+            font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
             
-    except IOError as e:
-        logging.info(e)
-        
-    except KeyboardInterrupt:    
-        logging.info("ctrl + c:")
-        epd2in13_V4.epdconfig.module_exit()
-        exit()
+            epd = epd2in13_V4.EPD()
+            epd.init()
+            image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
+            draw = ImageDraw.Draw(image)
+            draw.text((16, 60), name + " the " + title, font = font15, fill = 0)
+            epd.display(epd.getbuffer(image))
+                
+        except IOError as e:
+            logging.info(e)
+            
+        except KeyboardInterrupt:    
+            logging.info("ctrl + c:")
+            epd2in13_V4.epdconfig.module_exit()
+            exit()
+    else:
+        print("RPi.GPIO module not available. Running in keyboard-only mode.")
+        return
 
 def display_loading():
     try:

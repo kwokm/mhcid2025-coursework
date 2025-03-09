@@ -26,26 +26,28 @@ export const TrackList: React.FC<TrackListProps> = ({
   onPause,
   onVolumeChange,
   onPlaybackRateChange,
-  onPitchChange
+  onPitchChange,
 }) => {
   return (
     <div className="grid grid-cols-3 gap-4">
-      {tracks.map((track) => (
+      {tracks.map(track => (
         <TrackCard
           key={track.id}
           track={track}
           trackState={getTrackState(track.id)}
-          audioRef={(element) => {
+          audioRef={element => {
             if (element) {
               audioRefs.current.set(track.id, element);
             }
           }}
           onPlay={() => onPlay(track.id)}
           onPause={() => onPause(track.id)}
-          onVolumeChange={(volume) => onVolumeChange(track.id, volume)}
-          onPlaybackRateChange={(rate) => onPlaybackRateChange(track.id, rate)}
-          onPitchChange={(pitch) => onPitchChange(track.id, pitch)}
-          onPlayPause={() => (getTrackState(track.id).isPlaying ? onPause(track.id) : onPlay(track.id))}
+          onVolumeChange={volume => onVolumeChange(track.id, volume)}
+          onPlaybackRateChange={rate => onPlaybackRateChange(track.id, rate)}
+          onPitchChange={pitch => onPitchChange(track.id, pitch)}
+          onPlayPause={() =>
+            getTrackState(track.id).isPlaying ? onPause(track.id) : onPlay(track.id)
+          }
         />
       ))}
     </div>

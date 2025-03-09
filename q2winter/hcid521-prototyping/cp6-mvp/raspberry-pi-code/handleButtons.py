@@ -41,17 +41,17 @@ current_character_index = 0
 # Map keyboard keys to pins for testing
 key_to_pin_map = {
     'w': pins[0],  # Play wav-path1
-    'a': pins[1],  # Play wav-path2
+    'e': pins[1],  # Play wav-path2
     's': pins[2],  # Previous character
     'd': pins[3]   # Next character
 }
 
 
 def setup():
-    GPIO.cleanup()
-    GPIO.setmode(GPIO.BOARD)
     # Setup GPIO pins if available
     if RPI_AVAILABLE:
+        GPIO.cleanup()
+        GPIO.setmode(GPIO.BOARD)
         for pin in pins:
             print ("setting up pin", pin)
             GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -102,7 +102,7 @@ def switch_to_next_character():
     current_character_index = (current_character_index + 1) % len(characters)
     character = get_current_character()
     if RPI_AVAILABLE:
-        toysToStoriesDisplay.display_character_name(character['name'] + " the " + character['title'])
+        toysToStoriesDisplay.display_character_name(character['name'], character['title'])
 
     print(f"Switched to: {character['name']} - {character['title']}")
 
@@ -118,6 +118,8 @@ def switch_to_previous_character():
         
     current_character_index = (current_character_index - 1) % len(characters)
     character = get_current_character()
+    if RPI_AVAILABLE:
+        toysToStoriesDisplay.display_character_name(character['name'], character['title'])
     print(f"Switched to: {character['name']} - {character['title']}")
 
 def play_audio(file_path):
@@ -265,16 +267,18 @@ def start_listening():
     try:
         # Main loop for keyboard input
         while True:
-            key = get_char()
-            
-            # Exit on Ctrl+C
-            if key == '\x03':
-                print('Exiting...')
-                break
+            if not RPI_AVAILABLE:
+                key = get_char()
                 
-            # Handle w, a, s, d keys
-            if key in ['w', 'a', 's', 'd']:
-                handle_key_press(key)
+                # Exit on Ctrl+C
+                if key == '\x03':
+                    print('Exiting...')
+                    break
+                    
+                # Handle w, a, s, d keys
+                if key in ['w', 'e', 's', 'd']:
+                    handle_key_press(key)
+                    
     except KeyboardInterrupt:
         print('Exiting...')
     except Exception as e:

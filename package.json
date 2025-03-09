@@ -2,6 +2,11 @@
   "name": "mhcid2025-coursework",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "remove-git-ignored": "git rm -r --cached . && git add ."
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -10,6 +15,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.23.0",
+    "prettier": "^3.5.3",
     "rpio": "^2.4.2"
   }
 }

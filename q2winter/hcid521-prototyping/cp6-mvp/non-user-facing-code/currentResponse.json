@@ -1,24 +1,24 @@
 {
   "response": [
     {
-      "wav-path": "/miscellaneous/Miscellaneous Squeak 27.wav",
-      "word": "Tapioca",
-      "wordtranslated": "Tapioca"
+      "wav-path": "/underwater/Underwater Water Splash Swim Movement Olympic Swimmers Lanes Pool 01.wav",
+      "word": "swimming",
+      "wordtranslated": "nadando"
     },
     {
-      "wav-path": "/human/Human Voice Female Sigh 01.wav",
-      "word": "Sighed",
-      "wordtranslated": "Suspiró"
+      "wav-path": "/liquid-water/Liquid Water Water Hands Splashing In Water 07.wav",
+      "word": "splashing",
+      "wordtranslated": "salpicando"
     },
     {
-      "wav-path": "/human/Human Running On Tiled Floor  02.wav",
-      "word": "Scooted",
-      "wordtranslated": "Se escabulló"
+      "wav-path": "/cartoon/Cartoon Voice Wise Guy Huh 01.wav",
+      "word": "imagined",
+      "wordtranslated": "imaginado"
     },
     {
-      "wav-path": "/crowd/Crowd Stadium Crowd Ambience Cheering Loudly 01.wav",
-      "word": "Cheered",
-      "wordtranslated": "Vitorearon"
+      "wav-path": "/liquid-water/Liquid Water Paddling Splashes In Bathtub 01.wav",
+      "word": "paddled",
+      "wordtranslated": "remado"
     }
   ]
 }

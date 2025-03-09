@@ -1,0 +1,25 @@
+{
+  "toys": [
+    {
+      "item": "Kappa",
+      "name": "Mizu",
+      "personality traits": [
+        "Curious",
+        "Adventurous",
+        "Friendly",
+        "Playful",
+        "Creative",
+        "Courageous"
+      ]
+    },
+    {
+      "item": "Tiger",
+      "name": "Growly"
+    },
+    {
+      "item": "Bear",
+      "name": "Shelly",
+      "image": "https://i.imgur.com/1234567890.png"
+    }
+  ]
+}

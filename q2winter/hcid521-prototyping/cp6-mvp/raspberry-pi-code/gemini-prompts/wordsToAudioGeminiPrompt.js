@@ -1,11 +1,7 @@
-const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} = require("@google/generative-ai");
-const { GoogleAIFileManager } = require("@google/generative-ai/server");
+const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
+const { GoogleAIFileManager } = require('@google/generative-ai/server');
 
-const apiKey = "AIzaSyD1rgVz8vdJRIzpYOtrR6wWQmk3M1OI2iE";
+const apiKey = 'AIzaSyD1rgVz8vdJRIzpYOtrR6wWQmk3M1OI2iE';
 const genAI = new GoogleGenerativeAI(apiKey);
 const fileManager = new GoogleAIFileManager(apiKey);
 
@@ -35,24 +31,25 @@ async function uploadToGemini(path, mimeType) {
  * should probably employ a more sophisticated approach.
  */
 async function waitForFilesActive(files) {
-  console.log("Waiting for file processing...");
-  for (const name of files.map((file) => file.name)) {
+  console.log('Waiting for file processing...');
+  for (const name of files.map(file => file.name)) {
     let file = await fileManager.getFile(name);
-    while (file.state === "PROCESSING") {
-      process.stdout.write(".")
-      await new Promise((resolve) => setTimeout(resolve, 10_000));
-      file = await fileManager.getFile(name)
+    while (file.state === 'PROCESSING') {
+      process.stdout.write('.');
+      await new Promise(resolve => setTimeout(resolve, 10_000));
+      file = await fileManager.getFile(name);
     }
-    if (file.state !== "ACTIVE") {
+    if (file.state !== 'ACTIVE') {
       throw Error(`File ${file.name} failed to process`);
     }
   }
-  console.log("...all files ready\n");
+  console.log('...all files ready\n');
 }
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
-  systemInstruction: "You are helping us create an AI powered soundboard for language learning.  This is the final part of a multi-prompt chain.  You'll receive a message in this format:\n\n\"{ Language } : {list of words or phrases}\"\n\nFor each word or phrase, find the most appropriate .wav file in the attached \"file_list.txt\".  Please return an exact path in \"wav-path\".  Then, translate them into the language provided at the beginning of the message.",
+  model: 'gemini-2.0-flash',
+  systemInstruction:
+    'You are helping us create an AI powered soundboard for language learning.  This is the final part of a multi-prompt chain.  You\'ll receive a message in this format:\n\n"{ Language } : {list of words or phrases}"\n\nFor each word or phrase, find the most appropriate .wav file in the attached "file_list.txt".  Please return an exact path in "wav-path".  Then, translate them into the language provided at the beginning of the message.',
 });
 
 const generationConfig = {
@@ -60,37 +57,35 @@ const generationConfig = {
   topP: 0.95,
   topK: 40,
   maxOutputTokens: 8192,
-  responseMimeType: "application/json",
+  responseMimeType: 'application/json',
   responseSchema: {
-    type: "object",
+    type: 'object',
     properties: {
       response: {
-        type: "array",
+        type: 'array',
         items: {
-          type: "object",
+          type: 'object',
           properties: {
             word: {
-              type: "string"
+              type: 'string',
             },
             wordtranslated: {
-              type: "string"
+              type: 'string',
             },
-            "wav-path": {
-              type: "string"
-            }
-          }
-        }
-      }
-    }
+            'wav-path': {
+              type: 'string',
+            },
+          },
+        },
+      },
+    },
   },
 };
 
 export async function wordsToAudio(input, fileListPath) {
   // TODO Make these files available on the local file system
   // You may need to update the file paths
-  const files = [
-    await uploadToGemini(fileListPath || "file_list.txt", "text/plain"),
-  ];
+  const files = [await uploadToGemini(fileListPath || 'file_list.txt', 'text/plain')];
 
   // Some files have a processing delay. Wait for them to be ready.
   await waitForFilesActive(files);
@@ -99,7 +94,7 @@ export async function wordsToAudio(input, fileListPath) {
     generationConfig,
     history: [
       {
-        role: "user",
+        role: 'user',
         parts: [
           {
             fileData: {

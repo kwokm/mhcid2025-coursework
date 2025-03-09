@@ -5,31 +5,29 @@ import subprocess
 import time
 try:
     import RPi.GPIO as GPIO
+    RPI_AVAILABLE = True
 except ImportError:
-    print("RPi.GPIO is not available on this platform")
+    print("RPi.GPIO module not available. Running in keyboard-only mode.")
+    RPI_AVAILABLE = False
 
 sys.path.append('./gemini-prompts')
 sys.path.append('./displaycode/mycode')
-sys.path.append('./buttonactionKeyboard')
-
-import buttonactionKeyboard
+import handleButtons
 # import wordsToAudio
 
 def setupScreen():
-    import toysToStoriesDisplay
-    toysToStoriesDisplay.display_loading()
-    data = json.load(open('currentResponse.json'))
-    print(data)
-    toysToStoriesDisplay.clear_display()
-    toysToStoriesDisplay.display_character_name("Azul", "Little Whale")
+    if RPI_AVAILABLE:
+        import toysToStoriesDisplay
+        toysToStoriesDisplay.display_loading()
+        data = json.load(open('currentResponse.json'))
+        print(data)
+        toysToStoriesDisplay.clear_display()
+        toysToStoriesDisplay.display_character_name("Azul", "Little Whale")
 
 def setupAudio():
-    buttonactionKeyboard.setup()
-    # Load characters from JSON
-    buttonactionKeyboard.load_characters_from_json()
-    
-    # Start listening for keyboard input and GPIO events
-    buttonactionKeyboard.start_listening() 
+    handleButtons.load_characters_from_json()
+    handleButtons.setup();
+    handleButtons.start_listening();
 
 def main():
     setupScreen()

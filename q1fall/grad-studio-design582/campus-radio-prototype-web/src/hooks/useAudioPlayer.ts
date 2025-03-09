@@ -14,12 +14,14 @@ export const useAudioPlayer = () => {
 
   const initializeTrack = (trackId: number) => {
     if (!trackStates.has(trackId)) {
-      setTrackStates(prev => new Map(prev).set(trackId, {
-        isPlaying: false,
-        volume: 1,
-        playbackRate: 1,
-        pitch: 0
-      }));
+      setTrackStates(prev =>
+        new Map(prev).set(trackId, {
+          isPlaying: false,
+          volume: 1,
+          playbackRate: 1,
+          pitch: 0,
+        })
+      );
     }
   };
 
@@ -29,9 +31,9 @@ export const useAudioPlayer = () => {
       audio.play();
       setTrackStates(prev => {
         const newStates = new Map(prev);
-        newStates.set(trackId, { 
+        newStates.set(trackId, {
           ...newStates.get(trackId)!,
-          isPlaying: true 
+          isPlaying: true,
         });
         return newStates;
       });
@@ -44,9 +46,9 @@ export const useAudioPlayer = () => {
       audio.pause();
       setTrackStates(prev => {
         const newStates = new Map(prev);
-        newStates.set(trackId, { 
+        newStates.set(trackId, {
           ...newStates.get(trackId)!,
-          isPlaying: false 
+          isPlaying: false,
         });
         return newStates;
       });
@@ -59,9 +61,9 @@ export const useAudioPlayer = () => {
       audio.volume = volume;
       setTrackStates(prev => {
         const newStates = new Map(prev);
-        newStates.set(trackId, { 
+        newStates.set(trackId, {
           ...newStates.get(trackId)!,
-          volume 
+          volume,
         });
         return newStates;
       });
@@ -74,9 +76,9 @@ export const useAudioPlayer = () => {
       audio.playbackRate = rate;
       setTrackStates(prev => {
         const newStates = new Map(prev);
-        newStates.set(trackId, { 
+        newStates.set(trackId, {
           ...newStates.get(trackId)!,
-          playbackRate: rate 
+          playbackRate: rate,
         });
         return newStates;
       });
@@ -86,21 +88,23 @@ export const useAudioPlayer = () => {
   const handlePitchChange = (trackId: number, pitch: number) => {
     setTrackStates(prev => {
       const newStates = new Map(prev);
-      newStates.set(trackId, { 
+      newStates.set(trackId, {
         ...newStates.get(trackId)!,
-        pitch 
+        pitch,
       });
       return newStates;
     });
   };
 
   const getTrackState = (trackId: number) => {
-    return trackStates.get(trackId) || {
-      isPlaying: false,
-      volume: 1,
-      playbackRate: 1,
-      pitch: 0
-    };
+    return (
+      trackStates.get(trackId) || {
+        isPlaying: false,
+        volume: 1,
+        playbackRate: 1,
+        pitch: 0,
+      }
+    );
   };
 
   return {
@@ -112,6 +116,6 @@ export const useAudioPlayer = () => {
     handleVolumeChange,
     handlePlaybackRateChange,
     handlePitchChange,
-    getTrackState
+    getTrackState,
   };
 };

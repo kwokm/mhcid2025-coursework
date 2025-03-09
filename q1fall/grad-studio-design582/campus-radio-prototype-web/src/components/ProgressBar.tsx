@@ -6,11 +6,7 @@ interface ProgressBarProps {
   onSeek: (time: number) => void;
 }
 
-export const ProgressBar: React.FC<ProgressBarProps> = ({
-  currentTime,
-  duration,
-  onSeek,
-}) => {
+export const ProgressBar: React.FC<ProgressBarProps> = ({ currentTime, duration, onSeek }) => {
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -24,7 +20,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         min={0}
         max={duration || 100}
         value={currentTime}
-        onChange={(e) => onSeek(parseFloat(e.target.value))}
+        onChange={e => onSeek(parseFloat(e.target.value))}
         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
       />
       <div className="flex justify-between text-sm text-gray-500">

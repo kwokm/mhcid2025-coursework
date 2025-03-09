@@ -1,5 +1,3 @@
-
-
 let stars = [];
 let speed = 10; // Initial zoom speed
 let xpos = 0;
@@ -12,10 +10,10 @@ let accelY = 0;
 
 // --- Color Palette for Stars ---
 let starColors = [
-  [255, 255, 255],       // White
-  [255, 240, 255],       // Slightly Warm White (Ivory/Cream)
-  [230, 245, 255],       // Very Cool White (Light Steel Blue)
-  [180, 220, 255],       // Light Blue (Sky Blue)
+  [255, 255, 255], // White
+  [255, 240, 255], // Slightly Warm White (Ivory/Cream)
+  [230, 245, 255], // Very Cool White (Light Steel Blue)
+  [180, 220, 255], // Light Blue (Sky Blue)
 ];
 // --- End Colors
 
@@ -26,10 +24,7 @@ function setup() {
   for (let i = 0; i < starDensity; i++) {
     stars.push(new Star());
   }
-
 }
-
-
 
 function draw() {
   background(0);
@@ -39,7 +34,6 @@ function draw() {
   speed = constrain(speed, minSpeed, 80); // Limit speed range
   xpos += accelX * 1; // Adjust multiplier to control speed sensitivity
   xpos = constrain(xpos, -1.5, 1.5); // Limit xpos range
-
 
   push(); // Start a new drawing state
 
@@ -53,7 +47,6 @@ function draw() {
 
   pop(); // Restore original drawing state
 
- 
   /* // --- UNCOMMENT FOR DEBUGGING SERIAL DATA and SPEED ---  
   fill(255);
   textSize(16);
@@ -105,19 +98,19 @@ class Star {
 }
 
 function keyPressed() {
-    if (key === 's' || key === 'S') {
-      accelY = -0.5; // Simulate backward tilt (decrease speed)
-    } else if (key === 'w' || key === 'W') {
-      accelY = 0.5; // Simulate forward tilt (increase speed)
-    } else if (key === 'a' || key === 'A') {
-      accelX = .04; // Simulate left tilt (shift zoom right)
-    } else if (key === 'd' || key === 'D') {
-      accelX = -.04; // Simulate right tilt (shift zoom left)dd
-    }
-    if (key === 'r'){
-        accelY = 0;
-    }
-    if (key === 'f'){
-        accelX = 0;
-    }
+  if (key === 's' || key === 'S') {
+    accelY = -0.5; // Simulate backward tilt (decrease speed)
+  } else if (key === 'w' || key === 'W') {
+    accelY = 0.5; // Simulate forward tilt (increase speed)
+  } else if (key === 'a' || key === 'A') {
+    accelX = 0.04; // Simulate left tilt (shift zoom right)
+  } else if (key === 'd' || key === 'D') {
+    accelX = -0.04; // Simulate right tilt (shift zoom left)dd
   }
+  if (key === 'r') {
+    accelY = 0;
+  }
+  if (key === 'f') {
+    accelX = 0;
+  }
+}

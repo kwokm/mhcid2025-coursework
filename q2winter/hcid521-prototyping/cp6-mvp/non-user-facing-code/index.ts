@@ -1,2 +1,2 @@
-export * from "./webFunctions";
-export * from "./utilityFunctions";
+export * from './webFunctions';
+export * from './utilityFunctions';
