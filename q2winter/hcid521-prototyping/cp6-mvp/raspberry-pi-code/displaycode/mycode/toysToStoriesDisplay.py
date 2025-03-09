@@ -60,7 +60,7 @@ def display_toys_to_stories(word1, word2, word3, word4):
         epd2in13_V4.epdconfig.module_exit()
         exit()
 
-def display_character_name(name, title):
+def display_character(name, title, id):
     if RPI_AVAILABLE:
         try:
             # Drawing on the image
@@ -69,7 +69,8 @@ def display_character_name(name, title):
 
             image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
             draw = ImageDraw.Draw(image)
-            draw.text((16, 60), name + " the " + title, font = font15, fill = 0)
+            draw.bitmap((0,0), Image.open(os.path.join(picdir, 'toy-bmps', f"{id}.bmp")), fill=0)
+            draw.text((78, 53), name + " the " + title, font = font15, fill = 0)
             epd.display(epd.getbuffer(image))
                 
         except IOError as e:

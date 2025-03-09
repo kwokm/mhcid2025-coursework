@@ -102,7 +102,7 @@ def switch_to_next_character():
     current_character_index = (current_character_index + 1) % len(characters)
     character = get_current_character()
     if RPI_AVAILABLE:
-        toysToStoriesDisplay.display_character_name(character['name'], character['title'])
+        toysToStoriesDisplay.display_character(character['name'], character['title'], current_character_index)
 
     print(f"Switched to: {character['name']} - {character['title']}")
 
@@ -119,7 +119,7 @@ def switch_to_previous_character():
     current_character_index = (current_character_index - 1) % len(characters)
     character = get_current_character()
     if RPI_AVAILABLE:
-        toysToStoriesDisplay.display_character_name(character['name'], character['title'])
+        toysToStoriesDisplay.display_character_name(character['name'], character['title'], current_character_index)
     print(f"Switched to: {character['name']} - {character['title']}")
 
 def play_audio(file_path):
@@ -269,7 +269,6 @@ def start_listening():
         while True:
             if not RPI_AVAILABLE:
                 key = get_char()
-                
                 # Exit on Ctrl+C
                 if key == '\x03':
                     print('Exiting...')
