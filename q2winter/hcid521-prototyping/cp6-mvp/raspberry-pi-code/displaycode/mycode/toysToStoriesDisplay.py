@@ -14,6 +14,8 @@ try:
     from waveshare_epd import epd2in13_V4
     from PIL import Image,ImageDraw,ImageFont
     RPI_AVAILABLE = True
+    epd = epd2in13_V4.EPD()
+    epd.init()
 except ImportError:
     print("RPi.GPIO module not available. Running in keyboard-only mode.")
     RPI_AVAILABLE = False
@@ -25,8 +27,6 @@ import traceback
 # logging.basicConfig(level=logging.DEBUG)
 
 def clear_display():
-    epd = epd2in13_V4.EPD()
-    epd.init()
     epd.Clear(0xFF)
     # epd.sleep()
 
@@ -36,8 +36,6 @@ def display_toys_to_stories(word1, word2, word3, word4):
         font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
         font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
         
-        epd = epd2in13_V4.EPD()
-        epd.init()
         image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
         draw = ImageDraw.Draw(image)
         # draw divider lines
@@ -68,9 +66,7 @@ def display_character_name(name, title):
             # Drawing on the image
             font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
             font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
-            
-            epd = epd2in13_V4.EPD()
-            epd.init()
+
             image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
             draw = ImageDraw.Draw(image)
             draw.text((16, 60), name + " the " + title, font = font15, fill = 0)
@@ -90,9 +86,6 @@ def display_character_name(name, title):
 def display_loading():
     try:
         logging.info("Toys to Stories Display Control")
-        
-        epd = epd2in13_V4.EPD()
-        epd.init()
 
         # Drawing on the image
         font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)

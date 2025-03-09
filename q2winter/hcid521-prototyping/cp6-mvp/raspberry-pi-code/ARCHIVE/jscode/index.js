@@ -1,4 +1,4 @@
-import { wordsToAudio, storyCreation } from '../gemini-prompts/index';
+import { wordsToAudio, storyCreation } from '../../gemini-prompts/index';
 import { startListening, updateAudioFiles } from './buttonactionKeyboard';
 async function main() {
   const result = await wordsToAudio('Chinese: robot, tiger, lightsaber, cat');
