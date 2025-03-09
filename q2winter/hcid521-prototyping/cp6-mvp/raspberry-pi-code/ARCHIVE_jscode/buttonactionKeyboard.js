@@ -1,6 +1,9 @@
 const { exec } = require('child_process');
 const readline = require('readline');
 const fs = require('fs'); // Add file system module
+const sys = require('sys');
+sys.path.append('./displaycode/mycode')
+import toysToStoriesDisplay
 
 // Define the GPIO pins to monitor (using BCM numbering)
 const pins = [17, 27, 22, 23]; // Replace with your actual GPIO pin numbers

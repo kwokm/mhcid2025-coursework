@@ -53,6 +53,27 @@ def display_toys_to_stories(word1, word2, word3, word4):
         epd2in13_V4.epdconfig.module_exit()
         exit()
 
+def display_character_name(name, title):
+    try:
+        # Drawing on the image
+        font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
+        font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
+        
+        epd = epd2in13_V4.EPD()
+        epd.init()
+        image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
+        draw = ImageDraw.Draw(image)
+        draw.text((16, 60), name + " the " + title, font = font15, fill = 0)
+        epd.display(epd.getbuffer(image))
+            
+    except IOError as e:
+        logging.info(e)
+        
+    except KeyboardInterrupt:    
+        logging.info("ctrl + c:")
+        epd2in13_V4.epdconfig.module_exit()
+        exit()
+
 def display_loading():
     try:
         logging.info("Toys to Stories Display Control")

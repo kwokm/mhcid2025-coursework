@@ -1,24 +1,46 @@
 {
   "response": [
     {
-      "word": "robot",
-      "wordtranslated": "机器人 (Jīqìrén)",
-      "wav-path": "/science-fiction/Science Fiction Sci-Fi Electronic Robot Droid 97.wav"
+      "name": "Azul",
+      "title": "Little Whale",
+      "wav-path1": "/animals/whale huh.wav",
+      "wav-path2": "/animals/whale lonely.wav"
     },
     {
-      "word": "tiger",
-      "wordtranslated": "老虎 (Lǎohǔ)",
-      "wav-path": "/animals/Animal Mammal Carnivore Cat Tiger Roar 01.wav"
+      "name": "Bubbles",
+      "title": "Rubber Duck",
+      "wav-path1": "/animals/Duck Quacking Cute.wav",
+      "wav-path2": "/animals/Bird Flying Away.wav"
     },
     {
-      "word": "lightsaber",
-      "wordtranslated": "光剑 (Guāng jiàn)",
-      "wav-path": "/science-fiction/Science Fiction Sci-Fi Saber Light Saber Whoosh 01.wav"
+      "name": "Nibbles",
+      "title": "Alligator",
+      "wav-path1": "/animals/Animal Reptile Alligator Breath 02.wav",
+      "wav-path2": "/underwater/Underwater Water Splash Swim Movement 01.wav"
     },
     {
-      "word": "cat",
-      "wordtranslated": "猫 (Māo)",
-      "wav-path": "/animals/Animal Mammal Carnivore Cat Domestic Cat Meow Sad 02.wav"
+      "name": "Pearl",
+      "title": "Mermaid",
+      "wav-path1": "/cartoon/Mermaid Sing.wav",
+      "wav-path2": "/liquid-water/Liquid Water Water Hands Splashing In Water Fast 02.wav"
+    },
+    {
+      "name": "Spike",
+      "title": "Triceratops",
+      "wav-path1": "/animals/Triceratops Roar.wav",
+      "wav-path2": "/animals/Triceratops Growl.wav"
+    },
+    {
+      "name": "Daisy",
+      "title": "Pony",
+      "wav-path1": "/animals/Animal Horse Running In Dirt 04.wav",
+      "wav-path2": "/animals/Horse Neigh.wav"
+    },
+    {
+      "name": "Jumbo",
+      "title": "Elephant",
+      "wav-path1": "/animals/Elephant Growl.wav",
+      "wav-path2": "/cartoon/Cartoon Trombone Elephant Sound 01.wav"
     }
   ]
 }
