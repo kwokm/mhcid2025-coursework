@@ -17,8 +17,8 @@ import handleButtons
 
 def setup():
     import assetSetup
-    assetSetup.download_bmps()
-    assetSetup.convert_images_to_bmps()
+    assetSetup.download_bmps(json.load(open('currentResponse.json')))
+    assetSetup.convert_images_to_bmps(json.load(open('currentResponse.json')))
 
 def setupScreen():
     if RPI_AVAILABLE:
