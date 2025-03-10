@@ -60,18 +60,24 @@ def display_toys_to_stories(word1, word2, word3, word4):
         epd2in13_V4.epdconfig.module_exit()
         exit()
 
-def display_character(name, title, id):
+def display_character(name, title, id, new=False):
     if RPI_AVAILABLE:
         try:
             # Drawing on the image
-            font15 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 15)
+            font16 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 16)
+            font12 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 12)
             font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
 
             image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
             draw = ImageDraw.Draw(image)
             draw.bitmap((0,0), Image.open(os.path.join(picdir, 'toy-bmp', f"{id}.bmp")), fill=0)
-            draw.text((78, 53), name + " the " + title, font = font15, fill = 0)
-            epd.display(epd.getbuffer(image))
+            draw.text((136, 40), name, font = font16, fill = 0)
+            draw.text((136, 54), "the", font = font12, fill = 0)
+            draw.text((136, 68), title, font = font16, fill = 0)
+            if new:
+                epd.displayPartBaseImage(epd.getbuffer(image))
+            else:
+                epd.displayPartial(epd.getbuffer(image))
                 
         except IOError as e:
             logging.info(e)
@@ -96,7 +102,6 @@ def display_loading():
         draw.text((16, 16), "Loading...", font = font15, fill = 0)
         epd.display(epd.getbuffer(image))
         
-        logging.info("Goto Sleep...")
         # epd.sleep()
             
     except IOError as e:

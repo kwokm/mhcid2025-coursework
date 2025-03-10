@@ -46,7 +46,7 @@ def setupScreen():
         data = json.load(open('currentResponse.json'))
         print(data)
         toysToStoriesDisplay.clear_display()
-        toysToStoriesDisplay.display_character("Azul", "Little Whale", 0)
+        toysToStoriesDisplay.display_character("Azul", "Little Whale", 0, True)
 
 def setupAudio():
     handleButtons.load_characters_from_json()

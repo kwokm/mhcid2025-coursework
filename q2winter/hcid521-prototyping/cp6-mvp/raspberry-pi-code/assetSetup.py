@@ -7,9 +7,9 @@ def download_images(characters):
     
     for index, character in enumerate(characters):
         # Check if a file matching the current index exists in the specified directory
-        index_file_path = f"./displaycode/pic/toy-img/{index}.png"
+        index_file_path = f"./displaycode/pic/toy-img/{index}.bmp"
         if not os.path.isfile(index_file_path):
-            img_url = f"https://toys-to-stories-web.vercel.app/toy-photos/no-bg/compressed/{index}.png"
+            img_url = f"https://toys-to-stories-web.vercel.app/toy-photos/bmp/{index}.bmp"
             
             try:
                 # Create directory if it doesn't exist
@@ -34,6 +34,6 @@ def download_voices(characters):
 
 def convert_images_to_bmps(characters):
     for index, character in enumerate(characters):
-        image_path = f"./displaycode/pic/toy-img/{index}.png"
+        image_path = f"./displaycode/pic/toy-img/{index}.bmp"
         bmp_path = f"/home/pi/displaycode/pic/toy-bmp/{index}.bmp"
         bitmap_convert.place_image_in_square(image_path, bmp_path, 120)
