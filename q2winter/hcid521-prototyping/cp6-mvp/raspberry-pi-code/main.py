@@ -16,9 +16,28 @@ import handleButtons
 # import wordsToAudio
 
 def setup():
+    chars = []
+    
+    try:
+        with open('currentResponse.json', 'r') as file:
+            data = json.load(file)
+            print(data)
+            
+        if 'response' in data and isinstance(data['response'], list) and data['response']:
+            chars = data['response']
+        else:
+            print('Invalid JSON format: response array is missing or empty', file=sys.stderr)
+            
+    except FileNotFoundError:
+        print('currentResponse.json not found.', file=sys.stderr)
+    except json.JSONDecodeError as e:
+        print(f'Error parsing currentResponse.json: {str(e)}', file=sys.stderr)
+    except Exception as e:
+        print(f'Error loading characters: {str(e)}', file=sys.stderr)
+
     import assetSetup
-    assetSetup.download_bmps(json.load(open('currentResponse.json')))
-    assetSetup.convert_images_to_bmps(json.load(open('currentResponse.json')))
+    assetSetup.download_images(chars)
+    assetSetup.convert_images_to_bmps(chars)
 
 def setupScreen():
     if RPI_AVAILABLE:

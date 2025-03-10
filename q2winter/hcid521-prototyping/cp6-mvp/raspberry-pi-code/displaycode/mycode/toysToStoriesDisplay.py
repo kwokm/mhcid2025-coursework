@@ -69,7 +69,7 @@ def display_character(name, title, id):
 
             image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
             draw = ImageDraw.Draw(image)
-            draw.bitmap((0,0), Image.open(os.path.join(picdir, 'toy-bmps', f"{id}.bmp")), fill=0)
+            draw.bitmap((0,0), Image.open(os.path.join(picdir, 'toy-bmp', f"{id}.bmp")), fill=0)
             draw.text((78, 53), name + " the " + title, font = font15, fill = 0)
             epd.display(epd.getbuffer(image))
                 
