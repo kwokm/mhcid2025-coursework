@@ -1,3 +1,8 @@
+import sys
+
+sys.path.append('./displaycode/mycode')
+import bitmap_convert
+
 def download_bmps(characters):
     import requests
     import os
@@ -29,3 +34,9 @@ def download_bmps(characters):
 
 def download_voices(characters):
     return;
+
+def convert_images_to_bmps(characters):
+    for index, character in enumerate(characters):
+        image_path = f"/displaycode/pic/toy-photos/{index}.jpg"
+        bmp_path = f"/displaycode/pic/toy-bmps/{index}.bmp"
+        bitmap_convert.place_image_in_square(image_path, bmp_path, 120)

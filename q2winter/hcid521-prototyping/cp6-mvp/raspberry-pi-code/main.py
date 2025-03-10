@@ -15,6 +15,11 @@ sys.path.append('./displaycode/mycode')
 import handleButtons
 # import wordsToAudio
 
+def setup():
+    import assetSetup
+    assetSetup.download_bmps()
+    assetSetup.convert_images_to_bmps()
+
 def setupScreen():
     if RPI_AVAILABLE:
         import toysToStoriesDisplay
@@ -30,6 +35,7 @@ def setupAudio():
     handleButtons.start_listening();
 
 def main():
+    setup()
     setupScreen()
     setupAudio()
 
