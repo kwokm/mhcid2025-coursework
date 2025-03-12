@@ -67,12 +67,15 @@ def load_characters_from_json():
             data = json.load(file)
             print(data)
             
-        if 'response' in data and isinstance(data['response'], list) and data['response']:
-            characters = data['response']
-            current_character_index = 0
-            print(f"Loaded {len(characters)} characters. Current character: {characters[current_character_index]['name']}")
-        else:
-            print('Invalid JSON format: response array is missing or empty', file=sys.stderr)
+        # Check if the JSON has the expected structure
+        if 'toys' not in data:
+            print("Warning: currentResponse.json does not contain 'toys' field")
+            return
+
+        characters = data['toys']
+        current_character_index = 0
+        print(f"Loaded {len(characters)} characters. Current character: {characters[current_character_index]['name']} the {characters[current_character_index]['title']}")
+        return characters
             
     except FileNotFoundError:
         print('currentResponse.json not found.', file=sys.stderr)
@@ -145,7 +148,7 @@ def play_audio(file_path):
         
         is_playing = True
     
-    print(f'Playing audio: {file_path}')
+    print(f'Playing audio: {file_path} for word {characters[current_character_index]["vocab"]["vocab"][0]["word"]}')
     
     try:
         # Determine the platform and use appropriate audio player
@@ -186,18 +189,18 @@ def handle_pin_action(pin):
         return
         
     if pin == pins[0]:  # Play wav-path1
-        if 'wav-path1' in character:
-            audio_path = './audiofiles' + character['wav-path1']
+        if 'vocab' in character:
+            audio_path = './audiofiles/' + character['vocab']['vocab'][0]['audio']
             threading.Thread(target=play_audio, args=(audio_path,)).start()
         else:
-            print(f"No wav-path1 for character {character['name']}")
+            print(f"No audio for character {character['name']}")
             
     elif pin == pins[1]:  # Play wav-path2
-        if 'wav-path2' in character:
-            audio_path = './audiofiles' + character['wav-path2']
+        if 'vocab' in character:
+            audio_path = './audiofiles/' + character['vocab']['vocab'][1]['audio']
             threading.Thread(target=play_audio, args=(audio_path,)).start()
         else:
-            print(f"No wav-path2 for character {character['name']}")
+            print(f"No audio for character {character['name']}")
             
     elif pin == pins[2]:  # Previous character
         switch_to_previous_character()
