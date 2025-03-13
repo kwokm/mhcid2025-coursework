@@ -26,7 +26,7 @@ except ImportError:
     RPI_AVAILABLE = False
 
 # Define the GPIO pins to monitor (using BOARD numbering)
-pins = [16, 29, 33, 40]  # Replace with your actual GPIO pin numbers
+pins = [13, 29, 33, 40]  # Replace with your actual GPIO pin numbers
 
 # Pin functions:
 # pins[0] (13): Play wav-path1 of current character
@@ -40,10 +40,12 @@ current_character_index = 0
 
 # Map keyboard keys to pins for testing
 key_to_pin_map = {
-    'w': pins[0],  # Play wav-path1
-    'e': pins[1],  # Play wav-path2
-    's': pins[2],  # Previous character
-    'd': pins[3]   # Next character
+    'q': pins[0],  # Play first word
+    'w': pins[1],  # Play 2nd word
+    'e': pins[2],  # play 3rd word
+    'r': pins[3],   # Play 4th word
+    'd': pins[4],   # back character
+    'f': pins[5],   # forward character
 }
 
 
@@ -201,11 +203,22 @@ def handle_pin_action(pin):
             threading.Thread(target=play_audio, args=(audio_path,)).start()
         else:
             print(f"No audio for character {character['name']}")
-            
-    elif pin == pins[2]:  # Previous character
+    elif pin == pins[2]:  # Play wav-path2
+        if 'vocab' in character:
+            audio_path = './audiofiles/' + character['vocab']['vocab'][3]['audio']
+            threading.Thread(target=play_audio, args=(audio_path,)).start()
+        else:
+            print(f"No audio for character {character['name']}")
+    elif pin == pins[3]:  # Play wav-path2
+        if 'vocab' in character:
+            audio_path = './audiofiles/' + character['vocab']['vocab'][4]['audio']
+            threading.Thread(target=play_audio, args=(audio_path,)).start()
+        else:
+            print(f"No audio for character {character['name']}")
+    elif pin == pins[4]:  # Previous character
         switch_to_previous_character()
         
-    elif pin == pins[3]:  # Next character
+    elif pin == pins[5]:  # Next character
         switch_to_next_character()
 
 def handle_gpio_event(channel):
@@ -252,11 +265,7 @@ def start_listening():
     """
     
     print('Button monitoring started. Press Ctrl+C to exit.')
-    print('Keyboard testing enabled:')
-    print('  W: Play first sound of current character')
-    print('  A: Play second sound of current character')
-    print('  S: Switch to previous character')
-    print('  D: Switch to next character')
+    print('Keyboard testing enabled: QWER for audio, DF to switch characters.')
     
     # Display current character
     character = get_current_character()

@@ -15,8 +15,9 @@ sys.path.append('./displaycode/mycode')
 import handleButtons
 # import wordsToAudio
 
+chars = [];
+
 def setup():
-    chars = [];
     
     try:
         with open('currentResponse.json', 'r') as file:
@@ -48,7 +49,7 @@ def setupScreen():
         data = json.load(open('currentResponse.json'))
         print(data)
         toysToStoriesDisplay.clear_display()
-        toysToStoriesDisplay.display_character("Azul", "Little Whale", 0, True)
+        toysToStoriesDisplay.display_character(chars[0].name, chars[0].title, chars[0].id, True)
 
 def setupAudio():
     handleButtons.load_characters_from_json();
