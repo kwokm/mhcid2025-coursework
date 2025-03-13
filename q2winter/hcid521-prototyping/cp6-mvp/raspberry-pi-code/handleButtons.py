@@ -26,7 +26,7 @@ except ImportError:
     RPI_AVAILABLE = False
 
 # Define the GPIO pins to monitor (using BOARD numbering)
-pins = [13, 29, 33, 40]  # Replace with your actual GPIO pin numbers
+pins = [16, 29, 33, 40]  # Replace with your actual GPIO pin numbers
 
 # Pin functions:
 # pins[0] (13): Play wav-path1 of current character
@@ -105,7 +105,7 @@ def switch_to_next_character():
     current_character_index = (current_character_index + 1) % len(characters)
     character = get_current_character()
     if RPI_AVAILABLE:
-        toysToStoriesDisplay.display_character(character['name'], character['title'], current_character_index)
+        toysToStoriesDisplay.display_character(character['name'], character['title'], character['key'])
 
     print(f"Switched to: {character['name']} - {character['title']}")
 
@@ -122,7 +122,7 @@ def switch_to_previous_character():
     current_character_index = (current_character_index - 1) % len(characters)
     character = get_current_character()
     if RPI_AVAILABLE:
-        toysToStoriesDisplay.display_character(character['name'], character['title'], current_character_index)
+        toysToStoriesDisplay.display_character(character['name'], character['title'], character['key'])
     print(f"Switched to: {character['name']} - {character['title']}")
 
 def play_audio(file_path):
