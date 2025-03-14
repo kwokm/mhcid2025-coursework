@@ -17,7 +17,7 @@ import handleButtons
 
 chars = [];
 
-def setup():
+def setupChars():
     
     try:
         with open('currentResponse.json', 'r') as file:
@@ -47,9 +47,9 @@ def setupScreen():
         import toysToStoriesDisplay
         toysToStoriesDisplay.display_loading()
         data = json.load(open('currentResponse.json'))
-        print(data)
+        toys = data['toys']
         toysToStoriesDisplay.clear_display()
-        toysToStoriesDisplay.display_character(chars[0].name, chars[0].title, chars[0].id, True)
+        toysToStoriesDisplay.display_character(toys[0]['name'], toys[0]['title'], toys[0]['key'], True)
 
 def setupAudio():
     handleButtons.load_characters_from_json();
@@ -57,7 +57,7 @@ def setupAudio():
     handleButtons.start_listening();
 
 def main():
-    setup()
+    setupChars()
     setupScreen()
     setupAudio()
 

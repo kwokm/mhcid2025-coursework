@@ -3,6 +3,7 @@
 Code that supports design projects undertaken as part of the Masters of HCI + Design program at UW.
 
 ## Path Aliases
+
 This project uses TypeScript path aliases to make imports more convenient. The following aliases are available:
 
 - `@q1/*` - Points to files in the `q1fall` directory
