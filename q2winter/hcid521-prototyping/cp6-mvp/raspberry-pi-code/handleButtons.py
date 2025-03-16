@@ -58,6 +58,9 @@ key_to_pin_map = {
 # Flag to control the main listening loop
 should_exit = False
 
+# Cache for audio file existence checks
+audio_file_cache = {}
+
 def setup():
     # Setup GPIO pins if available
     if RPI_AVAILABLE:
@@ -74,15 +77,28 @@ def load_characters_from_json():
     global characters, current_character_index
     
     try:
+        # Check if we already have characters loaded
+        if characters:
+            print("DEBUG - Characters already loaded, skipping JSON load")
+            return characters
+            
         print("DEBUG - Attempting to load currentResponse.json")
-        with open('currentResponse.json', 'r') as file:
+        
+        # Use a cached file if it exists
+        json_path = 'currentResponse.json'
+        if not os.path.exists(json_path):
+            print(f"ERROR - {json_path} not found")
+            return None
+            
+        # Load the JSON file once
+        with open(json_path, 'r') as file:
             data = json.load(file)
             print("DEBUG - Successfully loaded JSON data")
             
         # Check if the JSON has the expected structure
         if 'toys' not in data:
             print("Warning: currentResponse.json does not contain 'toys' field")
-            return
+            return None
 
         characters = data['toys']
         current_character_index = 0
@@ -107,7 +123,12 @@ def load_characters_from_json():
             else:
                 print(f"  - No vocab data found")
         
-        print(f"Current character: {characters[current_character_index]['name']} the {characters[current_character_index]['title']}")
+        if characters:
+            print(f"Current character: {characters[current_character_index]['name']} the {characters[current_character_index]['title']}")
+        
+        # Pre-cache audio file existence
+        preload_audio_file_cache()
+        
         return characters
             
     except FileNotFoundError:
@@ -116,6 +137,46 @@ def load_characters_from_json():
         print(f'Error parsing currentResponse.json: {str(e)}', file=sys.stderr)
     except Exception as e:
         print(f'Error loading characters: {str(e)}', file=sys.stderr)
+    
+    return None
+
+def preload_audio_file_cache():
+    """
+    Preload the existence of audio files into a cache to avoid repeated file system checks
+    """
+    global audio_file_cache
+    
+    # Clear the cache
+    audio_file_cache = {}
+    
+    # Check audio directories
+    audio_dirs = [
+        './audiofiles',
+        './pronounce-audio',
+        './pronounce-translate-audio'
+    ]
+    
+    # Populate cache with file existence information
+    for audio_dir in audio_dirs:
+        if os.path.exists(audio_dir):
+            for filename in os.listdir(audio_dir):
+                full_path = os.path.join(audio_dir, filename)
+                if os.path.isfile(full_path):
+                    audio_file_cache[full_path] = True
+    
+    print(f"Preloaded {len(audio_file_cache)} audio files into cache")
+
+def file_exists(file_path):
+    """
+    Check if a file exists, using the cache if available
+    """
+    if file_path in audio_file_cache:
+        return audio_file_cache[file_path]
+    
+    # If not in cache, check the file system and update cache
+    exists = os.path.isfile(file_path)
+    audio_file_cache[file_path] = exists
+    return exists
 
 def get_current_character():
     """
@@ -217,8 +278,8 @@ def play_audio(file_path, pin_index):
     else:
         print(f'Playing audio: {file_path}')
     
-    # Check if file exists
-    if not os.path.exists(file_path):
+    # Check if file exists using the cache
+    if not file_exists(file_path):
         print(f"ERROR - Audio file not found: {file_path}")
         return
     

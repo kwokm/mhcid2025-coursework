@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import time
+import concurrent.futures
 try:
     import RPi.GPIO as GPIO
     RPI_AVAILABLE = True
@@ -15,10 +16,10 @@ sys.path.append('./displaycode/mycode')
 import handleButtons
 # import wordsToAudio
 
-chars = [];
+chars = []
 
-def setupChars():
-    
+def load_json_data():
+    """Load JSON data once and return it to avoid repeated loading"""
     try:
         with open('currentResponse.json', 'r') as file:
             data = json.load(file)
@@ -26,9 +27,9 @@ def setupChars():
         # Check if the JSON has the expected structure
         if 'toys' not in data:
             print("Warning: currentResponse.json does not contain 'toys' field")
-            return
+            return None
 
-        chars = data['toys']
+        return data
             
     except FileNotFoundError:
         print('currentResponse.json not found.', file=sys.stderr)
@@ -36,40 +37,61 @@ def setupChars():
         print(f'Error parsing currentResponse.json: {str(e)}', file=sys.stderr)
     except Exception as e:
         print(f'Error loading characters: {str(e)}', file=sys.stderr)
+    
+    return None
 
+def setupChars():
+    global chars
+    
+    # Load JSON data
+    data = load_json_data()
+    if not data:
+        return
+    
+    chars = data['toys']
+    
     import assetSetup
-    '''
-    assetSetup.download_json()
-    '''
-    assetSetup.download_images(chars)
-    assetSetup.download_pronunciation_audio(chars)
-    assetSetup.convert_images_to_bmps(chars)
+    
+    # Create a thread pool for parallel execution
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+        # Submit all tasks to the executor
+        download_images_future = executor.submit(assetSetup.download_images, chars)
+        download_audio_future = executor.submit(assetSetup.download_pronunciation_audio, chars)
+        
+        # Wait for downloads to complete before starting conversion
+        download_images_future.result()
+        download_audio_future.result()
+        
+        # Now convert images to BMPs
+        assetSetup.convert_images_to_bmps(chars)
 
 def setupScreen():
     if RPI_AVAILABLE:
         import toysToStoriesDisplay
         toysToStoriesDisplay.display_loading()
-        data = json.load(open('currentResponse.json'))
-        toys = data['toys']
-        toysToStoriesDisplay.clear_display()
-        toysToStoriesDisplay.display_character(toys[0]['name'], toys[0]['title'], toys[0]['key'], True)
+        
+        # Use the global chars variable instead of reloading JSON
+        if chars and len(chars) > 0:
+            toysToStoriesDisplay.clear_display()
+            toysToStoriesDisplay.display_character(chars[0]['name'], chars[0]['title'], chars[0]['key'], True)
 
 def setupAudio():
-    handleButtons.load_characters_from_json();
-    handleButtons.setup();
-    handleButtons.start_listening();
+    handleButtons.load_characters_from_json()
+    handleButtons.setup()
+    handleButtons.start_listening()
 
 def main():
+    start_time = time.time()
+    
     if RPI_AVAILABLE:
         import toysToStoriesDisplay
         toysToStoriesDisplay.display_loading()
+    
     setupChars()
     setupScreen()
     setupAudio()
-    if RPI_AVAILABLE:
-        data = json.load(open('currentResponse.json'))
-        toys = data['toys']
-        toysToStoriesDisplay.clear_display()
-        toysToStoriesDisplay.display_character(toys[0]['name'], toys[0]['title'], toys[0]['key'], True)
+    
+    end_time = time.time()
+    print(f"Setup completed in {end_time - start_time:.2f} seconds")
 
 main()
