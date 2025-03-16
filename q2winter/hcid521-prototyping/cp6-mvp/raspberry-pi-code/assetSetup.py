@@ -58,6 +58,101 @@ def download_images(characters=None):
     except Exception as e:
         print(f"Unexpected error: {e}")
 
+def download_pronunciation_audio(characters=None):
+    import requests
+    import os
+    import json
+    
+    # Load the currentResponse.json file
+    try:
+        with open('./currentResponse.json', 'r') as file:
+            data = json.load(file)
+        
+        # Check if the JSON has the expected structure
+        if 'toys' not in data:
+            print("Warning: currentResponse.json does not contain 'toys' field")
+            return
+        
+        toys_data = data['toys']
+        
+        # Create directories if they don't exist
+        os.makedirs("./pronounce-audio", exist_ok=True)
+        os.makedirs("./pronounce-translate-audio", exist_ok=True)
+        
+        # Iterate through all toys
+        for toy in toys_data:
+            # Check if toy has vocab field with nested vocab array
+            if 'vocab' not in toy or 'vocab' not in toy['vocab']:
+                print(f"Warning: Toy {toy.get('name', 'unknown')} does not have proper vocab structure")
+                continue
+            
+            # Get the vocab array for this toy
+            vocab_entries = toy['vocab']['vocab']
+            
+            # Process each vocab entry
+            for vocab_entry in vocab_entries:
+                # Check if vocab entry has a word field
+                if 'word' not in vocab_entry:
+                    print(f"Warning: Vocab entry in toy {toy.get('name', 'unknown')} does not have a 'word' field")
+                    continue
+                    
+                word = vocab_entry['word']
+                
+                # Download pronunciation audio
+                if 'pronunciationAudio' in vocab_entry and vocab_entry['pronunciationAudio']:
+                    audio_url = vocab_entry['pronunciationAudio']
+                    audio_file_path = f"./pronounce-audio/{word}.mp3"
+                    
+                    if not os.path.isfile(audio_file_path):
+                        try:
+                            # Download the file
+                            print(f"Downloading {audio_url} to {audio_file_path}")
+                            response = requests.get(audio_url)
+                            response.raise_for_status()  # Raise an exception for HTTP errors
+                            
+                            # Save the file
+                            with open(audio_file_path, 'wb') as file:
+                                file.write(response.content)
+                            
+                            print(f"Successfully downloaded and saved {audio_file_path}")
+                        except requests.exceptions.RequestException as e:
+                            print(f"Error downloading {audio_url}: {e}")
+                        except IOError as e:
+                            print(f"Error saving file to {audio_file_path}: {e}")
+                    else:
+                        print(f"File {audio_file_path} already exists, skipping download")
+                
+                # Download translated pronunciation audio
+                if 'translatePronounceUrl' in vocab_entry and vocab_entry['translatePronounceUrl']:
+                    translate_audio_url = vocab_entry['translatePronounceUrl']
+                    translate_audio_file_path = f"./pronounce-translate-audio/{word}.mp3"
+                    
+                    if not os.path.isfile(translate_audio_file_path):
+                        try:
+                            # Download the file
+                            print(f"Downloading {translate_audio_url} to {translate_audio_file_path}")
+                            response = requests.get(translate_audio_url)
+                            response.raise_for_status()  # Raise an exception for HTTP errors
+                            
+                            # Save the file
+                            with open(translate_audio_file_path, 'wb') as file:
+                                file.write(response.content)
+                            
+                            print(f"Successfully downloaded and saved {translate_audio_file_path}")
+                        except requests.exceptions.RequestException as e:
+                            print(f"Error downloading {translate_audio_url}: {e}")
+                        except IOError as e:
+                            print(f"Error saving file to {translate_audio_file_path}: {e}")
+                    else:
+                        print(f"File {translate_audio_file_path} already exists, skipping download")
+    
+    except FileNotFoundError:
+        print("Error: currentResponse.json file not found")
+    except json.JSONDecodeError:
+        print("Error: currentResponse.json is not a valid JSON file")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+
 def download_voices(characters):
     return;
 

@@ -1,376 +1,73 @@
 {
-  "userData": {
-    "language": "KR",
-    "readingLevel": 2,
-    "toys": [
-      {
-        "name": "Wooper",
-        "title": "Quagsire",
-        "vocab": {
-          "vocab": [
-            {
-              "audio": "/liquid-water/Liquid Water Water.wav",
-              "translation": "Agua",
-              "word": "Water"
-            },
-            {
-              "audio": "/liquid-water/Liquid Water Water Splash 10.wav",
-              "translation": "Salpicar",
-              "word": "Splash"
-            },
-            {
-              "audio": "/liquid-water/Liquid Mud Suction 19.wav",
-              "translation": "Lodo",
-              "word": "Mud"
-            },
-            {
-              "audio": "/weather/Weather Earthquake Rumble 01.wav",
-              "translation": "Temblar",
-              "word": "Quake"
-            }
-          ]
-        },
-        "key": "O02Jv06CkHPwAJA0uoUO3ibTEtVp78hU16FHresSfo9j4unD",
-        "image": "https://utfs.io/f/O02Jv06CkHPwAJA0uoUO3ibTEtVp78hU16FHresSfo9j4unD"
-      },
-      {
-        "name": "Ellie",
-        "title": "Elephant",
-        "vocab": {
-          "vocab": [
-            {
-              "audio": "/animals/Animal Mammal Herbivore Elephant Seal Cub Call 01.wav",
-              "translation": "barrito",
-              "word": "trumpet"
-            },
-            {
-              "audio": "/liquid-water/Liquid Water Water Foot Stomp In Water 01.wav",
-              "translation": "pisotear",
-              "word": "stomp"
-            },
-            {
-              "audio": "/science-fiction/Science Fiction Sci-Fi Electronic Energy Swell Fluttering Slow 08.wav",
-              "translation": "balancear",
-              "word": "sway"
-            },
-            {
-              "audio": "/cartoon/Cartoon Human Male Laugh Pillsbury Doughboy Laugh 01.wav",
-              "translation": "masticar",
-              "word": "munch"
-            }
-          ]
-        },
-        "key": "O02Jv06CkHPwfYXjGAeSQFduViIYANmO6z0b1rRXeZTPKwEy",
-        "image": "https://utfs.io/f/O02Jv06CkHPwfYXjGAeSQFduViIYANmO6z0b1rRXeZTPKwEy"
-      },
-      {
-        "name": "Darth Vader",
-        "title": "Sith",
-        "vocab": {
-          "vocab": [
-            {
-              "audio": "/sports/Sports Bat Aluminum Baseball Bat Hit 01.wav",
-              "translation": "Lado Oscuro",
-              "word": "Bat"
-            },
-            {
-              "audio": "/science-fiction/Science Fiction Sci-Fi Alien Breathe 03.wav",
-              "translation": "Aliento",
-              "word": "Breathe"
-            },
-            {
-              "audio": "/liquid-water/Liquid Water Water Push 11.wav",
-              "translation": "Empujar",
-              "word": "Push"
-            },
-            {
-              "audio": "/science-fiction/Science Fiction Sci-Fi Saber Light Saber Whoosh 01.wav",
-              "translation": "Estrangular",
-              "word": "Lightsaber"
-            }
-          ]
-        },
-        "key": "O02Jv06CkHPwIv4mUkgiEWxylFe8Rm4DMTr0av3cwohpKOLJ",
-        "image": "https://utfs.io/f/O02Jv06CkHPwIv4mUkgiEWxylFe8Rm4DMTr0av3cwohpKOLJ"
-      },
-      {
-        "name": "Oreo",
-        "title": "Horse",
-        "vocab": {
-          "vocab": [
-            {
-              "audio": "/animals/Animal Horse Snort 01.wav",
-              "translation": "Relinchar",
-              "word": "Neigh"
-            },
-            {
-              "audio": "/animals/Animal Horse Canters By On Gravel 01.wav",
-              "translation": "Galopar",
-              "word": "Gallop"
-            },
-            {
-              "audio": "/animals/Animal Mammal Herbivore Chipmunk Chatter 01.wav",
-              "translation": "Masticar",
-              "word": "Munch"
-            },
-            {
-              "audio": "/animals/Animal Horse Walk Steady 01.wav",
-              "translation": "Trotar",
-              "word": "Trot"
-            }
-          ]
-        },
-        "key": "O02Jv06CkHPwxgyUZHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
-        "image": "https://utfs.io/f/O02Jv06CkHPwxgyUZHktQpFyEfPkRu1wizbrHXo7ZUD20G69"
-      },
-      {
-        "name": "Rajah",
-        "title": "Tiger",
-        "vocab": {
-          "vocab": [
-            {
-              "audio": "/animals/Animal Mammal Carnivore Grizzly Bear Roar 01.wav",
-              "translation": "Rugido",
-              "word": "Roar"
-            },
-            {
-              "audio": "/multimedia/Multimedia Internet CD-Rom Flash Radio Element 12.wav",
-              "translation": "Rayas",
-              "word": "Stripes"
-            },
-            {
-              "audio": "/science-fiction/Science Fiction Sci-Fi Electronic Scan Quick 16.wav",
-              "translation": "Cazador",
-              "word": "Hunt"
-            },
-            {
-              "audio": "/animals/Animal Mammal Carnivore Cat Lynx Snarl 02.wav",
-              "translation": "Garras",
-              "word": "Claws"
-            }
-          ]
-        },
-        "key": "O02Jv06CkHPwbUEAbXwSYBCnqfm543Fo0XiuvJVAyWlIMGHk",
-        "image": "https://utfs.io/f/O02Jv06CkHPwbUEAbXwSYBCnqfm543Fo0XiuvJVAyWlIMGHk"
-      },
-      {
-        "name": "Jin",
-        "title": "Human",
-        "vocab": {
-          "vocab": [
-            {
-              "audio": "/foley-footsteps/Foley Footstep Hard Sole Run On Cement 01.wav",
-              "translation": "Correr",
-              "word": "Run"
-            },
-            {
-              "audio": "/foley-footsteps/Foley Footstep Hard Sole Dress Shoe Jump On Metal Platform 02.wav",
-              "translation": "Saltar",
-              "word": "Jump"
-            },
-            {
-              "audio": "/underwater/Underwater Water Hand Clap Under Water 07.wav",
-              "translation": "Aplaudir",
-              "word": "Clap"
-            },
-            {
-              "audio": "/cartoon/Cartoon Human Speak Through Voice Changer Robot Short 01.wav",
-              "translation": "Hablar",
-              "word": "Talk"
-            }
-          ]
-        },
-        "key": "O02Jv06CkHPwWS2yybuRVPrIlK9x5oF7hgab3dQzCHvZpMYn",
-        "image": "https://utfs.io/f/O02Jv06CkHPwWS2yybuRVPrIlK9x5oF7hgab3dQzCHvZpMYn"
-      }
-    ]
-  },
   "toys": [
-    {
-      "name": "Wooper",
-      "title": "Quagsire",
-      "vocab": {
-        "vocab": [
+            {
+              "name": "Ellie",
+              "title": "Elephant",
+              "vocab": {
+                "vocab": [
+                  { "audio": "elephant-trumpet.wav", "translation": "barrito", "word": "Trumpet",
+                  "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/trumpet-us.mp3",
+                  "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                  { "audio": "small-water-splash.wav", "translation": "pisotear", "word": "Stomp",
+                  "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/stomp-us.mp3",
+                  "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                  { "audio": "slip-fall.wav", "translation": "balancear", "word": "Sway",
+                  "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/sway-us.mp3",
+                  "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                  { "audio": "Human Male Chews Food Crunchy Mouth Open 02.wav", "translation": "masticar", "word": "Munch",
+                  "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/munch-us.mp3",
+                  "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" }
+                ]
+              },
+              "key": "O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy",
+              "image": "https://utfs.io/f/O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy",
+              "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy-O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy.bmp"
+            },
           {
-            "audio": "/liquid-water/Liquid Water Water.wav",
-            "translation": "Agua",
-            "word": "Water"
+            "name": "Quackers",
+            "title": "Duck",
+            "vocab": {
+              "vocab": [
+                { "audio": "Duck-Quacking-Cute.wav", "translation": "Cuac", "word": "Quack",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/quack-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                { "audio": "water-bubbles.wav", "translation": "nadar", "word": "Swim",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/swim-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                { "audio": "medium-water-splash.wav", "translation": "chapoteo", "word": "Splash",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/splash-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                { "audio": "Animal-Bird-Duck-Duckling-Chirp.wav", "translation": "plumaje", "word": "Feather",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/feather-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" }
+              ]
+            },
+            "key": "O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
+            "image": "https://utfs.io/f/O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
+            "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69-2roHGb8GsY1VC2EZSni1p7b1n9Xuze.bmp"
           },
           {
-            "audio": "/liquid-water/Liquid Water Water Splash 10.wav",
-            "translation": "Salpicar",
-            "word": "Splash"
-          },
-          {
-            "audio": "/liquid-water/Liquid Mud Suction 19.wav",
-            "translation": "Lodo",
-            "word": "Mud"
-          },
-          {
-            "audio": "/weather/Weather Earthquake Rumble 01.wav",
-            "translation": "Temblar",
-            "word": "Quake"
+            "name": "Oreo",
+            "title": "Horse",
+            "vocab": {
+              "vocab": [
+                { "audio": "Horse-Neigh.wav", "translation": "Relinchar", "word": "Neigh",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/neigh-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                { "audio": "Animal-Horse-Saddle-Movement.wav", "translation": "Galopar", "word": "Gallop",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/gallop-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                { "audio": "Animal-Horse-Saddle-Move.wav", "translation": "Cabalgar", "word": "Trot",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/trot-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" },
+                { "audio": "Weather-Snow-Moving.wav", "translation": "Heno", "word": "Hay",
+                "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/hay-us.mp3",
+                "translatePronounceUrl": "https://api.dictionaryapi.dev/media/pronunciations/en/spanish-us.mp3" }
+              ]
+            },
+            "key": "O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk",
+            "image": "https://utfs.io/f/O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk",
+            "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk-O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk.bmp"
           }
         ]
-      },
-      "key": "O02Jv06CkHPwAJA0uoUO3ibTEtVp78hU16FHresSfo9j4unD",
-      "image": "https://utfs.io/f/O02Jv06CkHPwAJA0uoUO3ibTEtVp78hU16FHresSfo9j4unD",
-      "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwAJA0uoUO3ibTEtVp78hU16FHresSfo9j4unD-324voVwGQFvf4PxgsY98oUa8Z43DxR.bmp"
-    },
-    {
-      "name": "Ellie",
-      "title": "Elephant",
-      "vocab": {
-        "vocab": [
-          {
-            "audio": "/animals/Animal Mammal Herbivore Elephant Seal Cub Call 01.wav",
-            "translation": "barrito",
-            "word": "trumpet"
-          },
-          {
-            "audio": "/liquid-water/Liquid Water Water Foot Stomp In Water 01.wav",
-            "translation": "pisotear",
-            "word": "stomp"
-          },
-          {
-            "audio": "/science-fiction/Science Fiction Sci-Fi Electronic Energy Swell Fluttering Slow 08.wav",
-            "translation": "balancear",
-            "word": "sway"
-          },
-          {
-            "audio": "/cartoon/Cartoon Human Male Laugh Pillsbury Doughboy Laugh 01.wav",
-            "translation": "masticar",
-            "word": "munch"
-          }
-        ]
-      },
-      "key": "O02Jv06CkHPwfYXjGAeSQFduViIYANmO6z0b1rRXeZTPKwEy",
-      "image": "https://utfs.io/f/O02Jv06CkHPwfYXjGAeSQFduViIYANmO6z0b1rRXeZTPKwEy",
-      "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwfYXjGAeSQFduViIYANmO6z0b1rRXeZTPKwEy-NNCiDyawEQuIcz04mHf6TWyb0E9slW.bmp"
-    },
-    {
-      "name": "Darth Vader",
-      "title": "Sith",
-      "vocab": {
-        "vocab": [
-          {
-            "audio": "/sports/Sports Bat Aluminum Baseball Bat Hit 01.wav",
-            "translation": "Lado Oscuro",
-            "word": "Bat"
-          },
-          {
-            "audio": "/science-fiction/Science Fiction Sci-Fi Alien Breathe 03.wav",
-            "translation": "Aliento",
-            "word": "Breathe"
-          },
-          {
-            "audio": "/liquid-water/Liquid Water Water Push 11.wav",
-            "translation": "Empujar",
-            "word": "Push"
-          },
-          {
-            "audio": "/science-fiction/Science Fiction Sci-Fi Saber Light Saber Whoosh 01.wav",
-            "translation": "Estrangular",
-            "word": "Lightsaber"
-          }
-        ]
-      },
-      "key": "O02Jv06CkHPwIv4mUkgiEWxylFe8Rm4DMTr0av3cwohpKOLJ",
-      "image": "https://utfs.io/f/O02Jv06CkHPwIv4mUkgiEWxylFe8Rm4DMTr0av3cwohpKOLJ",
-      "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwIv4mUkgiEWxylFe8Rm4DMTr0av3cwohpKOLJ-LXntnB5QsCDBpUPyxAnnzn8U3vsUWM.bmp"
-    },
-    {
-      "name": "Oreo",
-      "title": "Horse",
-      "vocab": {
-        "vocab": [
-          {
-            "audio": "/animals/Animal Horse Snort 01.wav",
-            "translation": "Relinchar",
-            "word": "Neigh"
-          },
-          {
-            "audio": "/animals/Animal Horse Canters By On Gravel 01.wav",
-            "translation": "Galopar",
-            "word": "Gallop"
-          },
-          {
-            "audio": "/animals/Animal Mammal Herbivore Chipmunk Chatter 01.wav",
-            "translation": "Masticar",
-            "word": "Munch"
-          },
-          {
-            "audio": "/animals/Animal Horse Walk Steady 01.wav",
-            "translation": "Trotar",
-            "word": "Trot"
-          }
-        ]
-      },
-      "key": "O02Jv06CkHPwxgyUZHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
-      "image": "https://utfs.io/f/O02Jv06CkHPwxgyUZHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
-      "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwxgyUZHktQpFyEfPkRu1wizbrHXo7ZUD20G69-3ScXsBgVBnHcAO0OKjaWaCAK7FK4QC.bmp"
-    },
-    {
-      "name": "Rajah",
-      "title": "Tiger",
-      "vocab": {
-        "vocab": [
-          {
-            "audio": "/animals/Animal Mammal Carnivore Grizzly Bear Roar 01.wav",
-            "translation": "Rugido",
-            "word": "Roar"
-          },
-          {
-            "audio": "/multimedia/Multimedia Internet CD-Rom Flash Radio Element 12.wav",
-            "translation": "Rayas",
-            "word": "Stripes"
-          },
-          {
-            "audio": "/science-fiction/Science Fiction Sci-Fi Electronic Scan Quick 16.wav",
-            "translation": "Cazador",
-            "word": "Hunt"
-          },
-          {
-            "audio": "/animals/Animal Mammal Carnivore Cat Lynx Snarl 02.wav",
-            "translation": "Garras",
-            "word": "Claws"
-          }
-        ]
-      },
-      "key": "O02Jv06CkHPwbUEAbXwSYBCnqfm543Fo0XiuvJVAyWlIMGHk",
-      "image": "https://utfs.io/f/O02Jv06CkHPwbUEAbXwSYBCnqfm543Fo0XiuvJVAyWlIMGHk",
-      "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwbUEAbXwSYBCnqfm543Fo0XiuvJVAyWlIMGHk-i1qrNar61umwYVBKaUirlIhHoofyrs.bmp"
-    },
-    {
-      "name": "Jin",
-      "title": "Human",
-      "vocab": {
-        "vocab": [
-          {
-            "audio": "/foley-footsteps/Foley Footstep Hard Sole Run On Cement 01.wav",
-            "translation": "Correr",
-            "word": "Run"
-          },
-          {
-            "audio": "/foley-footsteps/Foley Footstep Hard Sole Dress Shoe Jump On Metal Platform 02.wav",
-            "translation": "Saltar",
-            "word": "Jump"
-          },
-          {
-            "audio": "/underwater/Underwater Water Hand Clap Under Water 07.wav",
-            "translation": "Aplaudir",
-            "word": "Clap"
-          },
-          {
-            "audio": "/cartoon/Cartoon Human Speak Through Voice Changer Robot Short 01.wav",
-            "translation": "Hablar",
-            "word": "Talk"
-          }
-        ]
-      },
-      "key": "O02Jv06CkHPwWS2yybuRVPrIlK9x5oF7hgab3dQzCHvZpMYn",
-      "image": "https://utfs.io/f/O02Jv06CkHPwWS2yybuRVPrIlK9x5oF7hgab3dQzCHvZpMYn",
-      "bmpUrl": "https://nsqo2pyzsbzn4meq.public.blob.vercel-storage.com/O02Jv06CkHPwWS2yybuRVPrIlK9x5oF7hgab3dQzCHvZpMYn-L5x10naZv6PaXpUxFU7uI5Bipg3liJ.bmp"
-    }
-  ]
-}
+  }

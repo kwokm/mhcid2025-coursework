@@ -38,8 +38,11 @@ def setupChars():
         print(f'Error loading characters: {str(e)}', file=sys.stderr)
 
     import assetSetup
+    '''
     assetSetup.download_json()
+    '''
     assetSetup.download_images(chars)
+    assetSetup.download_pronunciation_audio(chars)
     assetSetup.convert_images_to_bmps(chars)
 
 def setupScreen():
@@ -57,8 +60,16 @@ def setupAudio():
     handleButtons.start_listening();
 
 def main():
+    if RPI_AVAILABLE:
+        import toysToStoriesDisplay
+        toysToStoriesDisplay.display_loading()
     setupChars()
     setupScreen()
     setupAudio()
+    if RPI_AVAILABLE:
+        data = json.load(open('currentResponse.json'))
+        toys = data['toys']
+        toysToStoriesDisplay.clear_display()
+        toysToStoriesDisplay.display_character(toys[0]['name'], toys[0]['title'], toys[0]['key'], True)
 
 main()

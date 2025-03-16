@@ -7,14 +7,17 @@ import tty
 import sys
 import termios
 import logging
+import select
 sys.path.append('./displaycode/mycode')
 import toysToStoriesDisplay
 
 
 # Define global variables for audio playback
-play_lock = threading.Lock()
-is_playing = False
 current_process = None  # Variable to track the current audio process
+
+# Define audio modes and track current mode for each button
+AUDIO_MODES = ["original", "pronunciation", "translation"]
+button_modes = {0: 0, 1: 0, 2: 0, 3: 0}  # Maps button index to current mode index
 
 try:
     import RPi.GPIO as GPIO  # Import Raspberry Pi GPIO library
@@ -52,6 +55,8 @@ key_to_pin_map = {
     'f': pins[5],   # forward character
 }
 
+# Flag to control the main listening loop
+should_exit = False
 
 def setup():
     # Setup GPIO pins if available
@@ -124,7 +129,7 @@ def switch_to_next_character():
     """
     Switch to the next character in the list
     """
-    global current_character_index
+    global current_character_index, button_modes
     
     if not characters:
         print("No characters loaded")
@@ -135,14 +140,19 @@ def switch_to_next_character():
     if RPI_AVAILABLE:
         toysToStoriesDisplay.display_character(character['name'], character['title'], character['key'])
 
+    # Reset all button modes to 0 (original audio mode)
+    for button_index in button_modes:
+        button_modes[button_index] = 0
+    
     print(f"Switched to: {character['name']} - {character['title']}")
     print(f"character['key'] = {character['key']}")
+    print("All button modes reset to original audio mode")
 
 def switch_to_previous_character():
     """
     Switch to the previous character in the list
     """
-    global current_character_index
+    global current_character_index, button_modes
     
     if not characters:
         print("No characters loaded")
@@ -152,43 +162,53 @@ def switch_to_previous_character():
     character = get_current_character()
     if RPI_AVAILABLE:
         toysToStoriesDisplay.display_character(character['name'], character['title'], character['key'])
+    
+    # Reset all button modes to 0 (original audio mode)
+    for button_index in button_modes:
+        button_modes[button_index] = 0
+        
     print(f"Switched to: {character['name']} - {character['title']}")
     print(f"character['key'] = {character['key']}")
+    print("All button modes reset to original audio mode")
 
 def play_audio(file_path, pin_index):
     """
     Play audio file using the appropriate command for the platform
     """
-    global is_playing, current_process
+    global current_process
     
-    # Cancel any currently playing audio
-    with play_lock:
-        if is_playing and current_process:
-            print("Canceling current playback")
-            try:
-                current_process.terminate()
-                current_process.wait(timeout=1)  # Wait for process to terminate
-            except (subprocess.TimeoutExpired, ProcessLookupError):
-                # If process doesn't terminate gracefully, force kill it
-                try:
-                    current_process.kill()
-                except:
-                    pass
-            current_process = None
-        
-        is_playing = True
+    # Always terminate the current process if it exists
+    if current_process:
+        try:
+            current_process.terminate()
+        except:
+            pass
+        current_process = None
+    
+    # Always kill any audio playback processes based on platform
+    if sys.platform == 'darwin':  # macOS
+        try:
+            # Kill any afplay processes
+            subprocess.run(['pkill', '-f', 'afplay'], stderr=subprocess.DEVNULL)
+        except Exception:
+            pass
+    elif sys.platform.startswith('linux'):  # Linux (including Raspberry Pi)
+        try:
+            # Kill any paplay and aplay processes
+            subprocess.run(['pkill', '-f', 'paplay'], stderr=subprocess.DEVNULL)
+            subprocess.run(['pkill', '-f', 'aplay'], stderr=subprocess.DEVNULL)
+        except Exception:
+            pass
     
     character = get_current_character()
     word_info = None
     
-    # Handle different vocab structures
+    # Get word info for display purposes
     if 'vocab' in character:
         if isinstance(character['vocab'], list):
-            # Direct list of vocab items
             if pin_index < len(character['vocab']):
                 word_info = character['vocab'][pin_index]
         elif isinstance(character['vocab'], dict) and 'vocab' in character['vocab']:
-            # Nested vocab structure
             if pin_index < len(character['vocab']['vocab']):
                 word_info = character['vocab']['vocab'][pin_index]
     
@@ -197,10 +217,10 @@ def play_audio(file_path, pin_index):
     else:
         print(f'Playing audio: {file_path}')
     
-    # Debug: Print absolute path and check if file exists
-    abs_path = os.path.abspath(file_path)
-    print(f"DEBUG - Absolute path: {abs_path}")
-    print(f"DEBUG - File exists: {os.path.exists(abs_path)}")
+    # Check if file exists
+    if not os.path.exists(file_path):
+        print(f"ERROR - Audio file not found: {file_path}")
+        return
     
     try:
         # Determine the platform and use appropriate audio player
@@ -208,50 +228,23 @@ def play_audio(file_path, pin_index):
             current_process = subprocess.Popen(['afplay', file_path])
             current_process.wait()
         elif sys.platform.startswith('linux'):  # Linux (including Raspberry Pi)
-            # Debug: List directory contents
-            dir_path = os.path.dirname(abs_path)
-            print(f"DEBUG - Directory contents of {dir_path}:")
+            # Try paplay first (PulseAudio)
             try:
-                files = os.listdir(dir_path)
-                for f in files:
-                    print(f"  - {f}")
-            except Exception as e:
-                print(f"DEBUG - Error listing directory: {str(e)}")
-                
-            # Try different audio players in order
-            players = [
-                ['paplay', file_path],
-                '''
-                ['aplay', file_path],
-                ['mplayer', file_path],
-                ['mpg123', file_path],
-                ['omxplayer', file_path]
-                '''
-            ]
-            success = False
-            for player_cmd in players:
+                current_process = subprocess.Popen(['paplay', file_path])
+                current_process.wait()
+            except (subprocess.SubprocessError, FileNotFoundError):
+                # Fallback to aplay if paplay fails
                 try:
-                    print(f"DEBUG - Trying to play with {player_cmd[0]}")
-                    current_process = subprocess.Popen(player_cmd)
+                    current_process = subprocess.Popen(['aplay', file_path])
                     current_process.wait()
-                    success = True
-                    break
                 except (subprocess.SubprocessError, FileNotFoundError) as e:
-                    print(f"DEBUG - Failed to play with {player_cmd[0]}: {str(e)}")
-                    continue
-            
-            if not success:
-                print("ERROR - All audio players failed")
+                    print(f"ERROR - Failed to play audio: {str(e)}")
         else:  # Windows or other
             print(f'Unsupported platform: {sys.platform}', file=sys.stderr)
-    except subprocess.SubprocessError as e:
+    except Exception as e:
         print(f'Error playing audio: {str(e)}', file=sys.stderr)
-    except FileNotFoundError:
-        print(f'Audio file not found: {file_path}', file=sys.stderr)
     finally:
-        with play_lock:
-            is_playing = False
-            current_process = None
+        current_process = None
 
 def handle_key_press(key):
     """
@@ -261,87 +254,67 @@ def handle_key_press(key):
         pin = key_to_pin_map[key]
         print(f"Key '{key}' pressed, simulating button press on pin {pin}")
         handle_pin_action(pin)
+    elif key == 'x':  # Use 'x' key to simulate pressing both navigation buttons
+        print("'x' key pressed, simulating both navigation buttons pressed")
+        restart_main_process()
 
 def handle_pin_action(pin):
     """
     Handle actions based on which pin was activated
     """
+    global button_modes
     character = get_current_character()
     
     if not character:
         print("No character selected")
         return
     
-    # Debug: Print current working directory
-    print(f"DEBUG - Current working directory: {os.getcwd()}")
-    
     # Handle audio buttons
     if pin in [pins[0], pins[1], pins[2], pins[3]]:
         # Find which button index was pressed
         button_index = pins.index(pin)
         
-        # Get vocab data based on character structure
-        audio_path = None
-        audio_file = None
-        
+        # Get the vocab item for this button
+        vocab_item = None
         if 'vocab' in character:
             if isinstance(character['vocab'], list):
-                # Direct list structure
                 if button_index < len(character['vocab']):
                     vocab_item = character['vocab'][button_index]
-                    if 'audio' in vocab_item:
-                        # Use os.path.join to avoid double slashes
-                        audio_file = vocab_item['audio'].lstrip('/')  # Remove leading slash if present
             elif isinstance(character['vocab'], dict) and 'vocab' in character['vocab']:
-                # Nested vocab structure
                 if button_index < len(character['vocab']['vocab']):
                     vocab_item = character['vocab']['vocab'][button_index]
-                    if 'audio' in vocab_item:
-                        # Use os.path.join to avoid double slashes
-                        audio_file = vocab_item['audio'].lstrip('/')  # Remove leading slash if present
         
+        if not vocab_item:
+            print(f"No vocabulary item found for button {button_index}")
+            return
+            
+        # Get the current mode for this button
+        current_mode = button_modes[button_index]
+        
+        # Determine which audio file to play based on the current mode
+        audio_file = None
+        if current_mode == 0:  # Original audio
+            if 'audio' in vocab_item:
+                audio_file = os.path.join('./audiofiles', f"{vocab_item['audio']}")
+        elif current_mode == 1:  # Pronunciation
+            if 'word' in vocab_item:
+                audio_file = os.path.join('./pronounce-audio', f"{vocab_item['word']}.mp3")
+        elif current_mode == 2:  # Translation
+            if 'word' in vocab_item:
+                audio_file = os.path.join('./pronounce-translate-audio', f"{vocab_item['word']}.mp3")
+        
+        # Rotate to the next mode for this button
+        button_modes[button_index] = (current_mode + 1) % len(AUDIO_MODES)
+        
+        # Print the current mode and next mode
+        print(f"Button {button_index} - Current mode: {AUDIO_MODES[current_mode]}, Next mode: {AUDIO_MODES[button_modes[button_index]]}")
+        
+        # Play the audio if a file was found
         if audio_file:
-            # Try different path combinations
-            possible_paths = [
-                os.path.join(path, audio_file),                      # ./audiofiles/path/to/file.wav
-                os.path.join(os.getcwd(), path, audio_file),         # /full/path/to/audiofiles/path/to/file.wav
-                os.path.join(os.getcwd(), 'audiofiles', audio_file), # /full/path/to/audiofiles/path/to/file.wav (explicit)
-                os.path.join('audiofiles', audio_file),              # audiofiles/path/to/file.wav
-                audio_file                                           # path/to/file.wav (as is)
-            ]
-            
-            # Find the first path that exists
-            for p in possible_paths:
-                if os.path.exists(p):
-                    audio_path = p
-                    print(f"DEBUG - Found audio file at: {audio_path}")
-                    break
-                else:
-                    print(f"DEBUG - Audio file not found at: {p}")
-            
-            # If no path exists, try to find the file in the audiofiles directory
-            if not audio_path and os.path.exists('audiofiles'):
-                print("DEBUG - Searching in audiofiles directory...")
-                for root, dirs, files in os.walk('audiofiles'):
-                    for file in files:
-                        if file == os.path.basename(audio_file):
-                            audio_path = os.path.join(root, file)
-                            print(f"DEBUG - Found audio file at: {audio_path}")
-                            break
-                    if audio_path:
-                        break
-            
-            if audio_path:
-                threading.Thread(target=play_audio, args=(audio_path, button_index)).start()
-            else:
-                print(f"No audio file found for {audio_file}")
-                # Try using aplay instead of paplay as a fallback
-                if sys.platform.startswith('linux'):
-                    fallback_path = os.path.join('audiofiles', audio_file)
-                    print(f"DEBUG - Trying fallback with aplay: {fallback_path}")
-                    threading.Thread(target=lambda: subprocess.call(['aplay', fallback_path]), args=()).start()
+            print(f"Playing {AUDIO_MODES[current_mode]} audio for word: {vocab_item.get('word', 'unknown')}")
+            threading.Thread(target=play_audio, args=(audio_file, button_index)).start()
         else:
-            print(f"No audio found for button {button_index+1} on character {character['name']}")
+            print(f"No audio file found for {AUDIO_MODES[current_mode]} mode")
             
     # Handle navigation buttons
     elif pin == pins[4]:  # Previous character
@@ -388,13 +361,68 @@ def setup_gpio_events():
     
     print("GPIO event detection set up for pins:", pins)
 
+def check_both_nav_buttons_pressed():
+    """
+    Check if both navigation buttons (pins 16 and 29) are pressed simultaneously
+    Returns True if both buttons are pressed, False otherwise
+    """
+    if not RPI_AVAILABLE:
+        return False
+    
+    # Get the state of both navigation buttons
+    # Note: GPIO.LOW means the button is pressed (active low)
+    prev_button_pressed = GPIO.input(pins[4]) == GPIO.LOW
+    next_button_pressed = GPIO.input(pins[5]) == GPIO.LOW
+    
+    # Add a small debounce to avoid false positives
+    if prev_button_pressed and next_button_pressed:
+        # Wait a small amount of time and check again to confirm
+        time.sleep(0.05)
+        prev_button_pressed = GPIO.input(pins[4]) == GPIO.LOW
+        next_button_pressed = GPIO.input(pins[5]) == GPIO.LOW
+    
+    return prev_button_pressed and next_button_pressed
+
+def restart_main_process():
+    """
+    Restart the main process by executing main.py
+    """
+    global should_exit
+    
+    print("Both navigation buttons pressed simultaneously! Restarting main process...")
+    should_exit = True
+    
+    # Clean up GPIO before restarting
+    if RPI_AVAILABLE:
+        GPIO.cleanup()
+    
+    # Execute main.py in a new process
+    try:
+        # Use the same Python interpreter that's currently running
+        python_executable = sys.executable
+        main_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'main.py')
+        
+        # Start the new process
+        subprocess.Popen([python_executable, main_script])
+        
+        # Exit the current process
+        print("Restarting main process...")
+        sys.exit(0)
+    except Exception as e:
+        print(f"Error restarting main process: {str(e)}", file=sys.stderr)
+        should_exit = False
+
 def start_listening():
     """
     Start listening for keyboard input and GPIO events
     """
+    global should_exit
+    should_exit = False
     
     print('Button monitoring started. Press Ctrl+C to exit.')
-    print('Keyboard testing enabled: QWER for audio, DF to switch characters.')
+    print('Keyboard testing enabled: QWER for audio, DF to switch characters, X to restart.')
+    print('Each button press rotates through modes: Original -> Pronunciation -> Translation -> Original')
+    print('Press both navigation buttons (pins 16 and 29) simultaneously to restart the main process.')
     
     # Display current character
     character = get_current_character()
@@ -405,17 +433,49 @@ def start_listening():
     if RPI_AVAILABLE:
         setup_gpio_events()
     
+    # Create a separate thread for checking button presses if on Raspberry Pi
+    if RPI_AVAILABLE:
+        def check_buttons_thread():
+            while not should_exit:
+                if check_both_nav_buttons_pressed():
+                    restart_main_process()
+                    break
+                time.sleep(0.1)
+        
+        # Start the button checking thread
+        button_thread = threading.Thread(target=check_buttons_thread)
+        button_thread.daemon = True  # Make thread exit when main thread exits
+        button_thread.start()
+    
     try:
         # Main loop for keyboard input
-        while True:
+        while not should_exit:
+            try:
+                # Try non-blocking keyboard input with select
+                if sys.stdin in select.select([sys.stdin], [], [], 0.1)[0]:
+                    key = get_char()
+                    # Exit on Ctrl+C
+                    if key == '\x03':
+                        print('Exiting...')
+                        break
+                    
+                    # Handle keys
+                    if key in ['q','w','e','r','d','f','x']:
+                        handle_key_press(key)
+                
+                # Small delay to prevent high CPU usage
+                time.sleep(0.05)
+            except (select.error, ValueError, TypeError) as e:
+                # Fallback to blocking input if select doesn't work
+                print(f"Warning: Non-blocking input failed ({str(e)}), falling back to blocking input")
                 key = get_char()
                 # Exit on Ctrl+C
                 if key == '\x03':
                     print('Exiting...')
                     break
-                    
-                # Handle w, a, s, d keys
-                if key in ['q','w','e','r','d','f']:
+                
+                # Handle keys
+                if key in ['q','w','e','r','d','f','x']:
                     handle_key_press(key)
                     
     except KeyboardInterrupt:
@@ -423,6 +483,8 @@ def start_listening():
     except Exception as e:
         print(f'Error: {str(e)}', file=sys.stderr)
     finally:
+        # Set exit flag for any threads
+        should_exit = True
         # Clean up GPIO on exit
         if RPI_AVAILABLE:
             GPIO.cleanup()

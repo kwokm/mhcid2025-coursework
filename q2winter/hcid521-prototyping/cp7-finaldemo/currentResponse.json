@@ -1,0 +1,65 @@
+{
+            "language": "DE",
+            "readingLevel": 1,
+            "toys": [
+          {
+            "name": "Goldie",
+            "title": "Teddy Bear",
+            "vocab": {
+              "vocab": [
+                { "audio": "Duck-Quacking-Cute.wav", "translation": "Cuac", "word": "Quack" },
+                { "audio": "small-water-splash.wav", "translation": "nadar", "word": "Swim" },
+                { "audio": "medium-water-splash.wav", "translation": "chapoteo", "word": "Splash" },
+                { "audio": "Animal-Bird-Duck-Duckling-Chirp.wav", "translation": "plumaje", "word": "Feather" }
+              ]
+            },
+            "key": "O02Jv06CkHPwOv9pVE6CkHPwAldJqS5QaZfX83Fs7eKcy6vz",
+            "image": "https://utfs.io/f/O02Jv06CkHPwOv9pVE6CkHPwAldJqS5QaZfX83Fs7eKcy6vz",
+            "pronunciationAudio": "https://api.dictionaryapi.dev/media/pronunciations/en/quack-us.mp3",
+            "translatePronounceUrl": "https://utfs.io/f/O02Jv06CkHPwOv9pVE6CkHPwAldJqS5QaZfX83Fs7eKcy6vz"
+          },
+          {
+            "name": "Quackers",
+            "title": "Duck",
+            "vocab": {
+              "vocab": [  
+
+                { "audio": "Duck-Quacking-Cute.wav", "translation": "Cuac", "word": "Quack" },
+                { "audio": "water-bubbles.wav", "translation": "nadar", "word": "Swim" },
+                { "audio": "medium-water-splash.wav", "translation": "chapoteo", "word": "Splash" },
+                { "audio": "Animal-Bird-Duck-Duckling-Chirp.wav", "translation": "plumaje", "word": "Feather" }
+              ]
+            },
+            "key": "O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
+            "image": "https://utfs.io/f/O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69"
+          },
+          {
+            "name": "Oreo",
+            "title": "Horse",
+            "vocab": {
+              "vocab": [
+                { "audio": "Horse-Neigh.wav", "translation": "Relinchar", "word": "Neigh" },
+                { "audio": "Animal-Horse-Saddle-Movement.wav", "translation": "Galopar", "word": "Gallop" },
+                { "audio": "Animal-Horse-Saddle-Move.wav", "translation": "Cabalgar", "word": "Trot" },
+                { "audio": "Animal-Mammal-Herbivore-Cattle-Bellow.wav", "translation": "Heno", "word": "Hay" }
+              ]
+            },
+            "key": "O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk",
+            "image": "https://utfs.io/f/O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk"
+          },
+          {
+            "name": "Ellie",
+            "title": "Elephant",
+            "vocab": {
+              "vocab": [
+                { "audio": "Elephant-Growl.wav", "translation": "barrito", "word": "Trumpet" },
+                { "audio": "small-water-splash.wav", "translation": "pisotear", "word": "Stomp" },
+                { "audio": "medium-water-splash.wav", "translation": "balancear", "word": "Sway" },
+                { "audio": "Human Male Chews Food Crunchy Mouth Open 02", "translation": "masticar", "word": "Munch" }
+              ]
+            },
+            "key": "O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy",
+            "image": "https://utfs.io/f/O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy"
+          }
+        ]
+      }
