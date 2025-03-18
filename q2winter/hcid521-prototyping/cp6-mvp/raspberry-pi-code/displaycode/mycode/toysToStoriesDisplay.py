@@ -56,8 +56,7 @@ def display_toys_to_stories(word1, word2, word3, word4):
         logging.info(e)
         
     except KeyboardInterrupt:    
-        logging.info("ctrl + c:")
-        epd2in13_V4.epdconfig.module_exit()
+        shutdown_display()
         exit()
 
 def display_character(name, title, id, new=False):
@@ -67,24 +66,22 @@ def display_character(name, title, id, new=False):
             font16 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 16)
             font12 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 12)
             font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
-
-            image = Image.new('1', (epd.height, epd.width), 255)  # 255: clear the frame    
-            draw = ImageDraw.Draw(image)
-            draw.bitmap((0,0), Image.open(os.path.join(picdir, 'toy-bmp', f"{id}.bmp")), fill=0)
-            draw.text((136, 40), name, font = font16, fill = 0)
-            draw.text((136, 54), "the", font = font12, fill = 0)
-            draw.text((136, 68), title, font = font16, fill = 0)
-            if new:
-                epd.displayPartBaseImage(epd.getbuffer(image))
-            else:
-                epd.displayPartial(epd.getbuffer(image))
+            
+            bg = Image.new('1', (epd.height, epd.width), 0)  # 255: clear the frame
+            bg_draw = ImageDraw.Draw(bg)
+            bg_draw.rectangle((0,0,122,122), fill = 0)
+            bg_draw.rectangle((136,40,250,84), fill = 0)
+            bg_draw.bitmap((0,0), Image.open(os.path.join(picdir, 'toy-bmp', f"{id}.bmp")), fill=255)
+            bg_draw.text((136, 40), name, font = font16, fill = 255)
+            bg_draw.text((136, 54), "the", font = font12, fill = 255)
+            bg_draw.text((136, 68), title, font = font16, fill = 255)
+            epd.display(epd.getbuffer(bg))
                 
         except IOError as e:
             logging.info(e)
             
         except KeyboardInterrupt:    
-            logging.info("ctrl + c:")
-            epd2in13_V4.epdconfig.module_exit()
+            shutdown_display()
             exit()
     else:
         print("RPi.GPIO module not available. Running in keyboard-only mode.")
@@ -108,9 +105,9 @@ def display_loading():
         logging.info(e)
         
     except KeyboardInterrupt:    
-        logging.info("ctrl + c:")
-        epd2in13_V4.epdconfig.module_exit()
+        shutdown_display()
         exit()
 
 def shutdown_display():
+    clear_display()
     epd2in13_V4.epdconfig.module_exit()

@@ -41,22 +41,24 @@ def load_json_data():
     return None
 
 def setupChars():
+    import assetSetup
     global chars
+    global lang
     
+    assetSetup.download_json()
     # Load JSON data
     data = load_json_data()
     if not data:
         return
     
     chars = data['toys']
-    
-    import assetSetup
+    lang = data['language']
     
     # Create a thread pool for parallel execution
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         # Submit all tasks to the executor
         download_images_future = executor.submit(assetSetup.download_images, chars)
-        download_audio_future = executor.submit(assetSetup.download_pronunciation_audio, chars)
+        download_audio_future = executor.submit(assetSetup.download_pronunciation_audio, chars, lang)
         
         # Wait for downloads to complete before starting conversion
         download_images_future.result()

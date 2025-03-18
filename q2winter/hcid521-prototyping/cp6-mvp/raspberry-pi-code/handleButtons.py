@@ -74,7 +74,7 @@ def load_characters_from_json():
     """
     Load character data from currentResponse.json
     """
-    global characters, current_character_index
+    global characters, current_character_index, lang
     
     try:
         # Check if we already have characters loaded
@@ -99,6 +99,9 @@ def load_characters_from_json():
         if 'toys' not in data:
             print("Warning: currentResponse.json does not contain 'toys' field")
             return None
+
+        global lang
+        lang = data['language']
 
         characters = data['toys']
         current_character_index = 0
@@ -257,7 +260,6 @@ def play_audio(file_path, pin_index):
         try:
             # Kill any paplay and aplay processes
             subprocess.run(['pkill', '-f', 'paplay'], stderr=subprocess.DEVNULL)
-            subprocess.run(['pkill', '-f', 'aplay'], stderr=subprocess.DEVNULL)
         except Exception:
             pass
     
@@ -361,8 +363,8 @@ def handle_pin_action(pin):
             if 'word' in vocab_item:
                 audio_file = os.path.join('./pronounce-audio', f"{vocab_item['word']}.mp3")
         elif current_mode == 2:  # Translation
-            if 'word' in vocab_item:
-                audio_file = os.path.join('./pronounce-translate-audio', f"{vocab_item['word']}.mp3")
+            if 'translation' in vocab_item:
+                audio_file = os.path.join('./pronounce-translate-audio', f"{vocab_item['translation']}-{lang}.mp3")
         
         # Rotate to the next mode for this button
         button_modes[button_index] = (current_mode + 1) % len(AUDIO_MODES)
