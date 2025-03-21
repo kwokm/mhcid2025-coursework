@@ -1,0 +1,8 @@
+#!/Users/michaelkwok/Code/mhcid2025-coursework/q2winter/hcid521-prototyping/cp6-mvp/raspberry-pi-code/venv-toys-to-stories/bin/python3.13
+# -*- coding: utf-8 -*-
+import re
+import sys
+from rsa.cli import sign
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(sign())
