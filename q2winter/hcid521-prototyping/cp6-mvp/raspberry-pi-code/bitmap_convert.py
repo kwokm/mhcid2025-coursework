@@ -45,6 +45,9 @@ def place_image_in_square(input_path, output_path, square_size):
         # Paste the resized image onto the square canvas
         square_canvas.paste(resized_image, (x_offset, y_offset))
 
+        # Rotate the image 90 degrees clockwise
+        square_canvas = square_canvas.rotate(270, expand=False)
+
         # Convert to 1-bit (black and white) using a threshold
         square_canvas = square_canvas.point(lambda x: 0 if x < 128 else 255, '1')
 
