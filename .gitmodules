@@ -1,3 +1,4 @@
 [submodule "q2winter/hcid521-prototyping/cp7-finaldemo/toys-to-stories-web"]
 	path = q2winter/hcid521-prototyping/cp7-finaldemo/toys-to-stories-web
 	url = https://github.com/kwokm/toys-to-stories-web.git
+	branch = main
