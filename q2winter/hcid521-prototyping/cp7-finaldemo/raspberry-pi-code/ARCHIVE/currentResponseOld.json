@@ -1,0 +1,24 @@
+{
+  "response": [
+    {
+      "word": "robot",
+      "wordtranslated": "机器人 (Jīqìrén)",
+      "wav-path": "/science-fiction/Science Fiction Sci-Fi Electronic Robot Droid 97.wav"
+    },
+    {
+      "word": "tiger",
+      "wordtranslated": "老虎 (Lǎohǔ)",
+      "wav-path": "/animals/Animal Mammal Carnivore Cat Tiger Roar 01.wav"
+    },
+    {
+      "word": "lightsaber",
+      "wordtranslated": "光剑 (Guāng jiàn)",
+      "wav-path": "/science-fiction/Science Fiction Sci-Fi Saber Light Saber Whoosh 01.wav"
+    },
+    {
+      "word": "cat",
+      "wordtranslated": "猫 (Māo)",
+      "wav-path": "/animals/Animal Mammal Carnivore Cat Domestic Cat Meow Sad 02.wav"
+    }
+  ]
+}

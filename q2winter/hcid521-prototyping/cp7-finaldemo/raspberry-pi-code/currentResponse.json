@@ -1,0 +1,197 @@
+{
+  "language": "es",
+  "readingLevel": 1,
+    "toys": [{
+      "name": "Scarlett",
+      "title": "Letter",
+      "vocab": {
+        "vocab": [{
+          "audio": "/multimedia/Multimedia Internet CD-Rom Flash Animation Cartoon 43.wav",
+          "translation": "Alfabeto",
+          "word": "Alphabet"
+        }, {
+          "audio": "/cartoon/Cartoon Squeak 01.wav",
+          "translation": "Sonido",
+          "word": "Sound"
+        }, {
+          "audio": "/cartoon/Cartoon Voice Bing Bam Boom Goofy 02.wav",
+          "translation": "Cantar",
+          "word": "Sing"
+        }, {
+          "audio": "/science-fiction/Science Fiction Sci-Fi Electronic 01.wav",
+          "translation": "A",
+          "word": "A"
+        }]
+      },
+      "key": "O02Jv06CkHPwlnp0XT74KHwSUoTJhuZQq0WxBfGDAej1Vz9O",
+      "image": "https://utfs.io/f/O02Jv06CkHPwlnp0XT74KHwSUoTJhuZQq0WxBfGDAej1Vz9O"
+    }, {
+      "name": "Goldie",
+      "title": "Teddy Bear",
+      "vocab": {
+        "vocab": [{
+          "audio": "/cartoon/Cartoon Voice Huggsy Wuggsy Nerdy 01.wav",
+          "translation": "Abrazo",
+          "word": "Hug"
+        }, {
+          "audio": "/foley-footsteps/Foley Footstep Hard Sole Shoe Walking On Solid Wood Platform 01.wav",
+          "translation": "Dormir",
+          "word": "Sleep"
+        }, {
+          "audio": "/cartoon/Cartoon Human Male Snoring Cartoon Snoring 01.wav",
+          "translation": "Roncar",
+          "word": "Snore"
+        }, {
+          "audio": "/cartoon/Cartoon Voice Choo Choo 01.wav",
+          "translation": "Acurrúquese",
+          "word": "Cuddle"
+        }]
+      },
+      "key": "O02Jv06CkHPwOv9pVE6CkHPwAldJqS5QaZfX83Fs7eKcy6vz",
+      "image": "https://utfs.io/f/O02Jv06CkHPwOv9pVE6CkHPwAldJqS5QaZfX83Fs7eKcy6vz"
+    }, {
+      "name": "Quackers",
+      "title": "Duck",
+      "vocab": {
+        "vocab": [{
+          "audio": "/animals/Animal Toad Spadefoot Toad Quack 02.wav",
+          "translation": "Cuac",
+          "word": "Quack"
+        }, {
+          "audio": "/underwater/Underwater Water Splash Swim Movement Olympic Swimmers Lanes Pool 01.wav",
+          "translation": "nadar",
+          "word": "Swim"
+        }, {
+          "audio": "/liquid-water/Liquid Water Water Splash 10.wav",
+          "translation": "chapoteo",
+          "word": "Splash"
+        }, {
+          "audio": "/weather/Weather Snow Footstep Single 06.wav",
+          "translation": "plumaje",
+          "word": "Feather"
+        }]
+      },
+      "key": "O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69",
+      "image": "https://utfs.io/f/O02Jv06CkHPwxX1uTHktQpFyEfPkRu1wizbrHXo7ZUD20G69"
+    }, {
+      "name": "Oreo",
+      "title": "Horse",
+      "vocab": {
+        "vocab": [{
+          "audio": "/animals/Animal Horse Snort 01.wav",
+          "translation": "Relinchar",
+          "word": "Neigh"
+        }, {
+          "audio": "/animals/Animal Horse Canters By On Gravel 01.wav",
+          "translation": "Galopar",
+          "word": "Gallop"
+        }, {
+          "audio": "/animals/Animal Horse On Gravel Trots Away 01.wav",
+          "translation": "Cabalgar",
+          "word": "Trot"
+        }, {
+          "audio": "null",
+          "translation": "Heno",
+          "word": "Hay"
+        }]
+      },
+      "key": "O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk",
+      "image": "https://utfs.io/f/O02Jv06CkHPw4hcusQToQEfDBI8ChxONgmzcvl3auHTYjZSk"
+    }, {
+      "name": "Ellie",
+      "title": "Elephant",
+      "vocab": {
+        "vocab": [{
+          "audio": "/cartoon/Cartoon Trombone 01.wav",
+          "translation": "barrito",
+          "word": "trumpet"
+        }, {
+          "audio": "/liquid-water/Liquid Water Water Foot Stomp In Water 01.wav",
+          "translation": "pisotear",
+          "word": "stomp"
+        }, {
+          "audio": "/liquid-water/Liquid Water Water Wave Splash Two Waves 01.wav",
+          "translation": "balancear",
+          "word": "sway"
+        }, {
+          "audio": "/liquid-water/Liquid Mud Suction 19.wav",
+          "translation": "masticar",
+          "word": "munch"
+        }]
+      },
+      "key": "O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy",
+      "image": "https://utfs.io/f/O02Jv06CkHPwfOSEuoeSQFduViIYANmO6z0b1rRXeZTPKwEy"
+    }, {
+      "name": "Lime",
+      "title": "Crocodile",
+      "vocab": {
+        "vocab": [{
+          "audio": "cartoon/Cartoon Balloon Release Rubber Snap 02.wav",
+          "translation": "Mordisco",
+          "word": "Chomp"
+        }, {
+          "audio": "underwater/Underwater Water Splash Swim Movement 01.wav",
+          "translation": "Nadando",
+          "word": "Swim"
+        }, {
+          "audio": "cartoon/Cartoon Balloon Release Rubber Snap 02.wav",
+          "translation": "Chasquido",
+          "word": "Snap"
+        }, {
+          "audio": "cartoon/Cartoon Weird Noise Short Lip Smack 01.wav",
+          "translation": "Boca",
+          "word": "Mouth"
+        }]
+      },
+      "key": "O02Jv06CkHPw3NT9OaB2wNcLqgGf4vMJ86Fr73WTYbDSAdRt",
+      "image": "https://utfs.io/f/O02Jv06CkHPw3NT9OaB2wNcLqgGf4vMJ86Fr73WTYbDSAdRt"
+    }, {
+      "name": "Trike",
+      "title": "Triceratops",
+      "vocab": {
+        "vocab": [{
+          "audio": "animals/Animal Mammal Carnivore Grizzly Bear Roar 01.wav",
+          "translation": "Rugido",
+          "word": "Roar"
+        }, {
+          "audio": "liquid-water/Liquid Water Water Foot Stomp In Water 01.wav",
+          "translation": "Pisotear",
+          "word": "Stomp"
+        }, {
+          "audio": "cartoon/Cartoon Horn Small Hand Horn Honking 09.wav",
+          "translation": "Cuerno",
+          "word": "Horn"
+        }, {
+          "audio": "multimedia/Multimedia Internet CD-Rom Flash Pop Up Short 18.wav",
+          "translation": "Comer",
+          "word": "Munch"
+        }]
+      },
+      "key": "O02Jv06CkHPwJbfSaWveYhPg5x2FtVmO7ofZ8SpCKWk9wR3A",
+      "image": "https://utfs.io/f/O02Jv06CkHPwJbfSaWveYhPg5x2FtVmO7ofZ8SpCKWk9wR3A"
+    }, {
+      "name": "Frank",
+      "title": "Talking Head",
+      "vocab": {
+        "vocab": [{
+          "audio": "/multimedia/Multimedia Internet CD-Rom Flash  Data Stream  258.wav",
+          "translation": "transmitir",
+          "word": "Stream"
+        }, {
+          "audio": "/multimedia/Multimedia Internet CD-Rom Flash Element 11.wav",
+          "translation": "compartir",
+          "word": "Share"
+        }, {
+          "audio": "/cartoon/Cartoon Human Male Scream Monkey Scream Short 01.wav",
+          "translation": "sonreír",
+          "word": "Smile"
+        }, {
+          "audio": "/cartoon/Cartoon Human Speak Through Voice Changer Robot Short 01.wav",
+          "translation": "hablar",
+          "word": "Speak"
+        }]
+      },
+      "key": "O02Jv06CkHPw08BlqkAdNuvPpWxw3iVLOC8krbc9H6sZGQgm",
+      "image": "https://utfs.io/f/O02Jv06CkHPw08BlqkAdNuvPpWxw3iVLOC8krbc9H6sZGQgm"
+    }]
+  }
