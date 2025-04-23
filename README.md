@@ -1,6 +1,6 @@
 # MHCID 2025 Coursework
 
-Code that supports design projects undertaken as part of the Masters of HCI + Design program at UW.
+Code, presentations, & artifacts supporting design projects undertaken by Michael Kwok as part of the Masters of HCI + Design program at UW
 
 ## Path Aliases
 
